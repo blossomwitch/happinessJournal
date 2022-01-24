@@ -1,6 +1,6 @@
-# Boilerplate for PROG3017 Full Stack Programming with Express Server and MongoDB
+# Happiness Journal Web App with Express Server and MongoDB
 
-This project folder contains the React client side and the Express Server side with MondoDB
+This project folder contains the React client side and the Express Server side with MongoDB
 
 ## Available Scripts
 
