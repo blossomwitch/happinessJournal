@@ -12,9 +12,9 @@ const Login = ({setToken}:ComponentProps) => {
   const [password, setPassword] = useState<string>();
   const [errorMsg, setErrorMsg] = useState<string>();
 
+  // send email and password to the server to authenticate
   const onSubmit = (e: any): void => {
     e.preventDefault();
-    // send email and password to the server to authenticate
     let sendJSON = {
       email: email,
       password: password,  
@@ -23,6 +23,7 @@ const Login = ({setToken}:ComponentProps) => {
     sendJSONData(SEND_SCRIPT, sendString, onSuccess, onError, "POST");
   };
 
+  // get a token from the server if login was valid
   const onSuccess = (e: any): void => {
     setErrorMsg(undefined);
     if (email === "admin") {
@@ -37,6 +38,7 @@ const Login = ({setToken}:ComponentProps) => {
     console.log("Error sending login information to server");
   };
 
+  // set the returned token to be saved in the session
   const onResponse = (result:Token):void => {
     setToken(result)  
   }
