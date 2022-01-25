@@ -51,6 +51,18 @@ app.post("/login", async (request, response) => {
   }
 });
 
+app.get("/teacherToken", (request, response) => {
+  response.send({
+    token: "teacher",
+  });
+});
+
+app.get("/studentToken", (request, response) => {
+  response.send({
+    token: "student",
+  });
+});
+
 app.use((request, response) => {
   response.sendFile(path.join(CLIENT_BUILD_PATH, "index.html"));
 });

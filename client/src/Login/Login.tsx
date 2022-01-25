@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { ComponentProps, Token } from "../Tools/data.model";
 import { sendJSONData, getJSONData } from "../Tools/Toolkit";
 // import { ComponentProps } from "../Tools/data.model";
 
 const SEND_SCRIPT: string = "http://localhost:8080/login";
+const RETRIEVE_SCRIPT_STUDENT: string = "http://localhost:8080/studentToken";
+const RETRIEVE_SCRIPT_TEACHER: string = "http://localhost:8080/teacherToken";
 
-const Login = () => {
+const Login = ({setToken}:ComponentProps) => {
   const [email, setEmail] = useState<string>();
   const [password, setPassword] = useState<string>();
   const [errorMsg, setErrorMsg] = useState<string>();
@@ -22,6 +25,11 @@ const Login = () => {
 
   const onSuccess = (e: any): void => {
     setErrorMsg(undefined);
+    if (email === "admin") {
+      getJSONData(RETRIEVE_SCRIPT_TEACHER, onResponse, ():void=>(console.log("Error getting session token")));
+    } else {
+      getJSONData(RETRIEVE_SCRIPT_STUDENT, onResponse, ():void=>(console.log("Error getting session token")));
+    }
   };
 
   const onError = (e: any): void => {
@@ -29,12 +37,16 @@ const Login = () => {
     console.log("Error sending login information to server");
   };
 
+  const onResponse = (result:Token):void => {
+    setToken(result.token)
+  }
+
   return (
     <div className="login-wrapper">
       <h1>Please Log In</h1>
       <form onSubmit={onSubmit}>
         <label>
-          <p>Username</p>
+          <p>Email/Username</p>
           <input type="text" onChange={(e) => setEmail(e.target.value)} />
         </label>
         <label>
