@@ -17,7 +17,7 @@ const Login = ({setToken}:ComponentProps) => {
     // send email and password to the server to authenticate
     let sendJSON = {
       email: email,
-      password: password,
+      password: password,  
     };
     let sendString = JSON.stringify(sendJSON);
     sendJSONData(SEND_SCRIPT, sendString, onSuccess, onError, "POST");
