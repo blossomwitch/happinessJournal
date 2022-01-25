@@ -1,5 +1,5 @@
 export interface ComponentProps {
-    setToken: React.Dispatch<React.SetStateAction<string | undefined>>;
+    setToken: (userToken: Token) => void
 }
 
 export interface Token {
