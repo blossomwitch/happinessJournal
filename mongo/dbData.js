@@ -2,6 +2,10 @@ db.login.drop();
 
 db.login.insert([
     {
+        "email": "admin",
+        "password": "admin"
+    },
+    {
         "email": "w000000@nscc.ca",
         "password": "test0"
     },
