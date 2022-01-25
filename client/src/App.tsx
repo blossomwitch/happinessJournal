@@ -1,12 +1,13 @@
-import React, { useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.scss";
 import Login from "./Login/Login";
+import useToken from "./Login/useToken";
 import ReflectionForm from "./Student/ReflectionForm";
 import Overview from "./Teacher/Overview";
 
 function App() {
-  const [token, setToken] = useState<string>();
+
+  const { token, setToken } = useToken();
 
   if (!token) {
     return <Login setToken={setToken}/>;

@@ -38,7 +38,7 @@ const Login = ({setToken}:ComponentProps) => {
   };
 
   const onResponse = (result:Token):void => {
-    setToken(result.token)
+    setToken(result)  
   }
 
   return (
