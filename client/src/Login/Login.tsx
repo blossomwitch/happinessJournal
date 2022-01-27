@@ -1,4 +1,8 @@
 import { useState } from "react";
+import "./Login.scss";
+// import img from './logo.png';
+import img from './logo.png';
+// import img from './logo3.png'; 
 import { ComponentProps, Token } from "../Tools/data.model";
 import { sendJSONData, getJSONData } from "../Tools/Toolkit";
 // import { ComponentProps } from "../Tools/data.model";
@@ -43,29 +47,44 @@ const Login = ({setToken}:ComponentProps) => {
 
   return (
     <div className="login-wrapper">
-      <h1>Please Log In</h1>
-      <form onSubmit={onSubmit}>
-        <label>
-          <p>Email/Username</p>
-          <input type="text" onChange={(e) => setEmail(e.target.value)} />
-        </label>
-        <label>
-          <p>Password</p>
-          <input
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
-        <div>
-          <button type="submit">Submit</button>
+      <div className="login-logo">
+        {/* Logo will add */}
+        <img src={img} />
+      </div>
+      <div className="login-content">
+        {/* <h3 className="login-title">Please Log In</h3> */}
+        <form onSubmit={onSubmit}>
+          <div className="login-input">
+            <input
+              id="username" 
+              type="text" 
+              placeholder="Email / Username" 
+              onChange={(e) => setEmail(e.target.value)} />
+              <label htmlFor="username">Email / Username</label>
+          </div>
+          <div className="login-input">
+            {/* Will changed */}
+            <input
+              id="password"
+              type="password"
+              placeholder="Password" 
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <label htmlFor="password">Password</label>
+          </div>
+            <span className="errormsg">{errorMsg}</span>
+          <div>
+            <button className="btnLogin" type="submit">Login</button>
+            <button className="btnLogin-teacher" type="submit">Teacher Login</button>
+            <button className="btnCreate" type="submit">Create User Account</button>
+          </div>
+        </form>
+        <div
+          style={{
+            display: (errorMsg === undefined ? true : false) ? "none" : "block",
+          }}
+        >
         </div>
-      </form>
-      <div
-        style={{
-          display: (errorMsg === undefined ? true : false) ? "none" : "block",
-        }}
-      >
-        {errorMsg}
       </div>
     </div>
   );
