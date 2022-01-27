@@ -1,0 +1,121 @@
+.login-wrapper {
+    text-align: center;
+    padding: 5% 20% 5% 20%;
+}
+
+.login-logo {
+    text-align: center;
+}
+
+.login-input{ 
+    position:relative; 
+    margin:10px 0; 
+}
+
+.login-input > input { 
+    background:transparent; 
+    border:none; 
+    border-bottom: solid 2px #ccc; 
+    padding:20px 0px 5px 0px; 
+    font-size:17pt; 
+    width:100%; 
+}
+
+input::placeholder { 
+    color: transparent;
+}
+
+input:placeholder-shown + label{ 
+    color:#aaa; 
+    font-size:14pt; 
+    top:15px; 
+}
+
+input:focus + label, label{ 
+    color:#131250; 
+    font-weight: bold;
+    font-size:10pt; 
+    pointer-events: none; 
+    position: absolute; 
+    left:0px; top:0px; 
+    transition: all 0.2s ease ; 
+    -webkit-transition: all 0.2s ease; 
+    -moz-transition: all 0.2s ease; 
+    -o-transition: all 0.2s ease; 
+}
+
+input:focus, input:not(:placeholder-shown){ 
+    border-bottom: solid 1px #131250; 
+    outline:none; 
+}
+
+// --------------------------------------- errormsg
+.errormsg {
+    color: red;
+    font-size: 20px;
+    text-align: left;
+}
+
+// --------------------------------------- Button
+button,
+button::after {
+    -webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+    -o-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.btnLogin {
+    background-color: #131250;
+    border:none;
+    color:white;
+    border-radius: 5px;
+    width:30%;
+    height:35px;
+    font-size: 14pt;
+    margin-top:50px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.btnLogin:hover {
+    background-color: transparent;
+    color: #131250;
+    border: 3px solid #131250;
+}
+
+.btnLogin-teacher {
+    background-color: #131250;
+    border:none;
+    color:white;
+    border-radius: 5px;
+    width:30%;
+    height:35px;
+    font-size: 14pt;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.btnLogin-teacher:hover {
+    background-color: transparent;
+    color: #131250;
+    border: 3px solid #131250;
+}
+
+.btnCreate {
+    background-color: #131250;
+    border:none;
+    color:white;
+    border-radius: 5px;
+    width:50%;
+    height:35px;
+    font-size: 14pt;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+.btnCreate:hover {
+    background-color: transparent;
+    color: #131250;
+    border: 3px solid #131250;
+}
