@@ -1,3 +1,6 @@
+// font
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Karla&family=Rowdies&display=swap');
+
 .login-wrapper {
     text-align: center;
     padding: 5% 20% 5% 20%;
@@ -8,8 +11,9 @@
 }
 
 .login-input{ 
+    font-family: 'Rowdies', cursive;
     position:relative; 
-    margin:10px 0; 
+    margin:10px 0;
 }
 
 .login-input > input { 
@@ -33,7 +37,6 @@ input:placeholder-shown + label{
 
 input:focus + label, label{ 
     color:#131250; 
-    font-weight: bold;
     font-size:10pt; 
     pointer-events: none; 
     position: absolute; 
@@ -63,6 +66,7 @@ button::after {
 	-moz-transition: all 0.3s;
     -o-transition: all 0.3s;
 	transition: all 0.3s;
+    font-family: 'Rowdies', cursive;
 }
 
 .btnLogin {

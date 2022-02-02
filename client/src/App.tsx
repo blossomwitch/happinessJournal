@@ -4,6 +4,7 @@ import Login from "./Login/Login";
 import useToken from "./Login/useToken";
 import ReflectionForm from "./Student/ReflectionForm";
 import Overview from "./Teacher/Overview";
+import Create from "./Create/Create";
 
 function App() {
 
@@ -11,6 +12,8 @@ function App() {
 
   if (!token) {
     return <Login setToken={setToken}/>;
+  } else if (token === "create") {
+    return <Create />
   } else if (token === "teacher") {
     return <Overview />
   }
