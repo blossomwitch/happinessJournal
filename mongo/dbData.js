@@ -1,4 +1,5 @@
 db.login.drop();
+db.student.drop();
 
 db.login.insert([
     {
@@ -22,3 +23,11 @@ db.login.insert([
         "password": "test3"
     },
 ]);
+
+db.student.insert([
+    {
+        "firstName": "sally",
+        "lastName": "nickelby",
+        "email": "w000000@nscc.ca"
+    }
+])

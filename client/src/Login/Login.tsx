@@ -3,12 +3,10 @@ import { useState } from "react";
 import "./Login.scss";
 import img from './logo.png';
 import { ComponentProps, Token } from "../Tools/data.model";
-import { sendJSONData, getJSONData } from "../Tools/Toolkit";
+import { sendJSONData } from "../Tools/Toolkit";
 // import { ComponentProps } from "../Tools/data.model";
 
 const SEND_SCRIPT: string = "http://localhost:8080/login";
-const RETRIEVE_SCRIPT_STUDENT: string = "http://localhost:8080/studentToken";
-const RETRIEVE_SCRIPT_TEACHER: string = "http://localhost:8080/teacherToken";
 
 const Login = ({setToken}:ComponentProps) => {
   const [email, setEmail] = useState<string>();
@@ -29,9 +27,15 @@ const Login = ({setToken}:ComponentProps) => {
   const onSuccess = (e: any): void => {
     setErrorMsg(undefined);
     if (email === "admin") {
-      getJSONData(RETRIEVE_SCRIPT_TEACHER, onResponse, ():void=>(console.log("Error getting session token")));
+      const token: Token = {
+        token: "teacher",
+      };
+      setToken(token);
     } else {
-      getJSONData(RETRIEVE_SCRIPT_STUDENT, onResponse, ():void=>(console.log("Error getting session token")));
+      const token: Token = {
+        token: "student",
+      };
+      setToken(token);
     }
   };
 
@@ -40,24 +44,19 @@ const Login = ({setToken}:ComponentProps) => {
     console.log("Error sending login information to server");
   };
 
-  // set the returned token to be saved in the session
-  const onResponse = (result:Token):void => {
-    setToken(result)  
-  }
-
   // set the token to view the create account page
   const create = (e:any):void => {
-    const create:Token = {
+    const token:Token = {
       token: "create"
     };
-    setToken(create);
+    setToken(token);
   }
 
   return (
     <div className="login-wrapper">
       <div className="login-logo">
         {/* Logo will add */}
-        <img src={img} />
+        <img src={img} alt="happiness journal logo"/>
       </div>
       <div className="login-content">
         {/* <h3 className="login-title">Please Log In</h3> */}
