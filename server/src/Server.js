@@ -17,6 +17,32 @@ app.use(sanitizer());
 const CLIENT_BUILD_PATH = path.join(__dirname, "./../../client/build");
 app.use("/", express.static(CLIENT_BUILD_PATH));
 
+// THIS IS FOR TESTING ONLY - DELETE BEFORE DEPLOYMENT !!!!!!!!!!!!!!!!!!!
+app.get("/get", async (request, response) => {
+  let mongoClient = new MongoClient(URL, { useUnifiedTopology: true });
+  try {
+    await mongoClient.connect();
+
+    let db = mongoClient.db(DB_NAME);
+    let loginArray = await db.collection("login").find().toArray();
+    let studentArray = await db.collection("student").find().toArray();
+    let json = {
+      logins: loginArray,
+      students: studentArray,
+    };
+    response.status(200);
+    response.send(json);
+  } catch (error) {
+    response.status(500);
+    response.send({ error: error.message });
+    throw error;
+  } finally {
+    mongoClient.close();
+  }
+});
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ^^^^^^
+
+// LOGIN -------------------------------------------------------------------
 app.post("/login", async (request, response) => {
   let mongoClient = new MongoClient(URL, { useUnifiedTopology: true });
 
@@ -51,16 +77,48 @@ app.post("/login", async (request, response) => {
   }
 });
 
-app.get("/teacherToken", (request, response) => {
-  response.send({
-    token: "teacher",
-  });
-});
+// CREATE ACCOUNT -------------------------------------------------------------------
+app.post("/createAccount", async (request, response) => {
+  let mongoClient = new MongoClient(URL, { useUnifiedTopology: true });
 
-app.get("/studentToken", (request, response) => {
-  response.send({
-    token: "student",
-  });
+  try {
+    await mongoClient.connect();
+
+    // get references to both collections in the db
+    let loginCollection = mongoClient.db(DB_NAME).collection("login");
+    let studentCollection = mongoClient.db(DB_NAME).collection("student");
+
+    // sanitize the form input
+    request.body.email = request.sanitize(request.body.email);
+    request.body.password = request.sanitize(request.body.password);
+    request.body.firstName = request.sanitize(request.body.firstName);
+    request.body.lastName = request.sanitize(request.body.lastName);
+
+    // seperate the data
+    let loginInfo = {
+      email: request.body.email,
+      password: request.body.password,
+    };
+
+    let studentInfo = {
+      firstName: request.body.firstName,
+      lastName: request.body.lastName,
+      email: request.body.email,
+    };
+
+    // add the documents to the collections
+    let result = await studentCollection.insertOne(studentInfo);
+
+    // status code for created
+    response.status(200);
+    response.send(result);
+  } catch (error) {
+    response.status(500);
+    response.send({ error: error.message });
+    throw error;
+  } finally {
+    mongoClient.close();
+  }
 });
 
 app.use((request, response) => {

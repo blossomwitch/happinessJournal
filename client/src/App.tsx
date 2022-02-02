@@ -10,10 +10,10 @@ function App() {
 
   const { token, setToken } = useToken();
 
-  if (!token) {
+  if (!token || token === "") {
     return <Login setToken={setToken}/>;
   } else if (token === "create") {
-    return <Create />
+    return <Create setToken={setToken}/>
   } else if (token === "teacher") {
     return <Overview />
   }
