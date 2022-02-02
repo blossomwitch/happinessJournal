@@ -1,8 +1,7 @@
 import { useState } from "react";
+// import { Link } from "react-router-dom";
 import "./Login.scss";
-// import img from './logo.png';
 import img from './logo.png';
-// import img from './logo3.png'; 
 import { ComponentProps, Token } from "../Tools/data.model";
 import { sendJSONData, getJSONData } from "../Tools/Toolkit";
 // import { ComponentProps } from "../Tools/data.model";
@@ -27,7 +26,6 @@ const Login = ({setToken}:ComponentProps) => {
     sendJSONData(SEND_SCRIPT, sendString, onSuccess, onError, "POST");
   };
 
-  // get a token from the server if login was valid
   const onSuccess = (e: any): void => {
     setErrorMsg(undefined);
     if (email === "admin") {
@@ -45,6 +43,14 @@ const Login = ({setToken}:ComponentProps) => {
   // set the returned token to be saved in the session
   const onResponse = (result:Token):void => {
     setToken(result)  
+  }
+
+  // set the token to view the create account page
+  const create = (e:any):void => {
+    const create:Token = {
+      token: "create"
+    };
+    setToken(create);
   }
 
   return (
@@ -77,10 +83,10 @@ const Login = ({setToken}:ComponentProps) => {
             <span className="errormsg">{errorMsg}</span>
           <div>
             <button className="btnLogin" type="submit">Login</button>
-            <button className="btnLogin-teacher" type="submit">Teacher Login</button>
-            <button className="btnCreate" type="submit">Create User Account</button>
+            <button className="btnLogin-teacher" type="submit">Teacher Login</button>  
           </div>
         </form>
+        <button className="btnCreate" onClick={create}>Create User Account</button>
         <div
           style={{
             display: (errorMsg === undefined ? true : false) ? "none" : "block",

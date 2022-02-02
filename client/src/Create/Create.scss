@@ -1,0 +1,117 @@
+// font
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Karla&family=Rowdies&display=swap');
+
+
+.create-wrapper {
+    padding: 5% 20% 5% 20%;
+}
+
+.create-logo {
+    text-align: center;
+}
+
+.create-content {
+    border: 3px dashed #ccc;
+    padding: 2% 25% 5% 25%;
+    background-color: rgb(242, 246, 247);
+}
+
+h1 {
+    font-family: 'Rowdies', cursive;
+    text-align: center;
+    color: #131250;
+}
+
+.create-input {
+    font-family: 'Rowdies', cursive;
+    font-size:20pt;
+    padding-bottom: 20px;
+}
+
+.create-input > input {
+    background-color: white;
+    border: solid 2px #ccc; 
+    font-size:12pt; 
+    width:100%; 
+    height: 30px;
+}
+
+.create-input > input::placeholder { 
+    color: #ccc;
+}
+
+.create-title {
+    color: #131250;
+    font-size: 20px;
+}
+
+// -------------------------------------------- Validation Style
+#fname, #lname, #email, #password, #passwordCf {
+    font-size: 14px;
+}
+.success {
+    color: green;
+}
+.error {
+   color: red;
+} 
+
+// -------------------------------------------- Button Style
+button,
+button::after {
+    -webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+    -o-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.create-button {
+    text-align: center;
+}
+
+.btnCreateAccount {
+    background-color: #131250;
+    border:none;
+    color:white;
+    border-radius: 5px;
+    width:40%;
+    height:35px;
+    font-size: 14pt;
+    margin-top:50px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.btnCreateAccount:hover {
+    background-color: transparent;
+    color: #131250;
+    border: 3px solid #131250;
+}
+
+.btnCreateAccount:disabled {
+    background-color: #ccc;
+    border:none;
+    color:rgb(255, 255, 255);
+    border-radius: 5px;
+}
+
+.btnBack {
+    background-color: #131250;
+    border:none;
+    color:white;
+    border-radius: 5px;
+    width:20%;
+    height:35px;
+    font-size: 14pt;
+    margin-top:50px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.btnBack:hover {
+    background-color: transparent;
+    color: #131250;
+    border: 3px solid #131250;
+}
+
+
