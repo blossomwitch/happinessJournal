@@ -5,6 +5,7 @@ let MongoClient = require("mongodb").MongoClient;
 let sanitizer = require("express-sanitizer");
 let ObjectId = require("mongodb").ObjectId;
 let axios = require('axios');
+const bcrypt = require ('bcrypt');
 
 const URL = "mongodb://mongo:27017/";
 const DB_NAME = "dbData";
@@ -60,15 +61,28 @@ app.post("/login", async (request, response) => {
       .find({ email: request.body.email })
       .toArray();
 
-    if (login[0] === undefined || request.body.password !== login[0].password) {
+    // the the login email doesn't exist
+    if (login[0] === undefined) {
       response.status(406);
       response.send({ error: "Incorrect Username or Password" });
       mongoClient.close();
       return;
     } else {
-      response.send({ success: "Login Credentials Correct" });
-      response.status(200);
+      // compare the password to the hashed password in the database
+      bcrypt.compare(request.body.password, login[0].password, function(err, result) {
+        if(!result) {
+          response.status(406);
+          response.send({ error: "Incorrect Username or Password" });
+          mongoClient.close();
+          return; 
+        } else {
+          response.send({ success: "Login Credentials Correct" });
+          response.status(200);
+        }
+      });
     }
+
+
   } catch (error) {
     response.status(500);
     response.send({ error: error.message });
@@ -86,7 +100,6 @@ app.post("/createAccount", async (request, response) => {
     await mongoClient.connect();
 
     // get references to both collections in the db
-    let loginCollection = mongoClient.db(DB_NAME).collection("login");
     let studentCollection = mongoClient.db(DB_NAME).collection("student");
 
     // sanitize the form input
@@ -95,24 +108,33 @@ app.post("/createAccount", async (request, response) => {
     request.body.firstName = request.sanitize(request.body.firstName);
     request.body.lastName = request.sanitize(request.body.lastName);
 
-    // seperate the data
-    let loginInfo = {
-      email: request.body.email,
-      password: request.body.password,
-    };
+    // salt/hash the password add Login to database
+    bcrypt.genSalt(10, function(err, salted) {
+      bcrypt.hash(request.body.password, salted, function(err, hashed) {
 
+        mongoClient.connect();
+        let loginCollection = mongoClient.db(DB_NAME).collection("login");
+
+        let loginInfo = {
+          email: request.body.email,
+          password: hashed,
+        };
+        loginCollection.insertOne(loginInfo);
+
+      })
+    });
+
+    // add Student to database
     let studentInfo = {
       firstName: request.body.firstName,
       lastName: request.body.lastName,
       email: request.body.email,
     };
-
-    // add the documents to the collections
-    let result = await studentCollection.insertOne(studentInfo);
+    studentCollection.insertOne(studentInfo);
 
     // status code for created
     response.status(200);
-    response.send(result);
+    response.send("Student Created");
   } catch (error) {
     response.status(500);
     response.send({ error: error.message });
@@ -135,7 +157,7 @@ app.post("/recaptcha", async (request, response) => {
       response.send("ReCaptcha Verification Passed");
     } else {
       response.status(500);
-      console.log("ReCaptcha Verification Failed");
+      response.send("ReCaptcha Verification Failed");
     }
   } catch (error) {
     response.status(500);

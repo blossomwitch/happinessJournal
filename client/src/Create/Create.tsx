@@ -2,7 +2,7 @@ import { useState, useCallback } from "react";
 import { Redirect } from "react-router-dom";
 import { ComponentProps, Token } from "../Tools/data.model";
 import { sendJSONData } from "../Tools/Toolkit";
-import ReCAPTCHA from 'react-google-recaptcha';
+import ReCAPTCHA from "react-google-recaptcha";
 import "./Create.scss";
 import img from "./logo.png";
 
@@ -124,7 +124,7 @@ const Create = ({ setToken }: ComponentProps) => {
     [password]
   );
 
-  // ---------------------------------------------------------------- Event Handlers 
+  // ---------------------------------------------------------------- Event Handlers
   // back button to return to login page
   const backButton = (e: any): void => {
     const token: Token = {
@@ -140,30 +140,49 @@ const Create = ({ setToken }: ComponentProps) => {
       firstName: fName,
       lastName: lName,
       email: email,
-      password: password  
+      password: password,
     };
     let sendString = JSON.stringify(sendJSON);
-    sendJSONData(SEND_SCRIPT, sendString, onSuccess, ():void=>(console.log("Error creating account")), "POST");
+    sendJSONData(
+      SEND_SCRIPT,
+      sendString,
+      onSuccess,
+      (): void => console.log("Error creating account"),
+      "POST"
+    );
   };
-  
+
   // if account data sends successfully - redirect to the student's reflection page
-  const onSuccess = (e:any):void => {
+  const onSuccess = (e: any): void => {
     const token: Token = {
-        token: "student",
-      };
-      setToken(token);
-    <Redirect to="/ReflectionForm"/>
-  }
+      token: "student",
+    };
+    setToken(token);
+    <Redirect to="/ReflectionForm" />;
+  };
 
   // ---------------------------------------------------------------- ReCaptcha
-  const recaptchaChecked = (e:any):void => {
-    let captchaData = {
+  const recaptchaChecked = (e: any): void => {
+    // failsafe for if the verification expires - disables button
+    if (e === null) {
+      setRecaptchaPassed(false);
+    } else {
+      // secret key from google and the response is generated on check
+      let captchaData = {
         secret: "6Lf6DVQeAAAAAN14mandf2IVlsSwNXTDS8NRfSzF",
-        response: e  
+        response: e,
+      };
+      let sendString = JSON.stringify(captchaData);
+      // send data to server for google verification of generated key
+      sendJSONData(
+        "http://localhost:8080/recaptcha",
+        sendString,
+        (): void => setRecaptchaPassed(true),
+        (): void => console.log("Error verifying ReCaptcha"),
+        "POST"
+      );
     }
-    let sendString = JSON.stringify(captchaData);
-    sendJSONData("http://localhost:8080/recaptcha", sendString, ():void=>(setRecaptchaPassed(true)), ():void=>(console.log("Error verifying ReCaptcha")), "POST");
-  }
+  };
 
   return (
     <div className="create-wrapper">
@@ -243,7 +262,10 @@ const Create = ({ setToken }: ComponentProps) => {
             )}
           </div>
           <div className="recaptcha">
-              <ReCAPTCHA sitekey="6Lf6DVQeAAAAANT8S4kwjehuEXJ4nTnLjiboozQr" onChange={recaptchaChecked}/>
+            <ReCAPTCHA
+              sitekey="6Lf6DVQeAAAAANT8S4kwjehuEXJ4nTnLjiboozQr"
+              onChange={recaptchaChecked}
+            />
           </div>
           <div className="create-button">
             <button
