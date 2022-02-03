@@ -4,6 +4,7 @@ let path = require("path");
 let MongoClient = require("mongodb").MongoClient;
 let sanitizer = require("express-sanitizer");
 let ObjectId = require("mongodb").ObjectId;
+let axios = require('axios');
 
 const URL = "mongodb://mongo:27017/";
 const DB_NAME = "dbData";
@@ -119,6 +120,29 @@ app.post("/createAccount", async (request, response) => {
   } finally {
     mongoClient.close();
   }
+});
+
+// recaptcha verification
+app.post("/recaptcha", async (request, response) => {
+  try {
+    // send the secret key and the generated key to google for verification
+    const res = await axios.post(
+      `https://www.google.com/recaptcha/api/siteverify?secret=${request.body.secret}&response=${request.body.response}`
+    );
+
+    if(res.data.success) {
+      response.status(200);
+      response.send("ReCaptcha Verification Passed");
+    } else {
+      response.status(500);
+      console.log("ReCaptcha Verification Failed");
+    }
+  } catch (error) {
+    response.status(500);
+    console.log("ReCaptcha error");
+    response.send({ error: error.message });
+    throw error;
+  } 
 });
 
 app.use((request, response) => {
