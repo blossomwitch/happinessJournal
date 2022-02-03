@@ -2,6 +2,7 @@ import { useState, useCallback } from "react";
 import { Redirect } from "react-router-dom";
 import { ComponentProps, Token } from "../Tools/data.model";
 import { sendJSONData } from "../Tools/Toolkit";
+import ReCAPTCHA from 'react-google-recaptcha';
 import "./Create.scss";
 import img from "./logo.png";
 
@@ -30,6 +31,7 @@ const Create = ({ setToken }: ComponentProps) => {
   const [isEmail, setIsEmail] = useState<boolean>(false);
   const [isPassword, setIsPassword] = useState<boolean>(false);
   const [isPasswordConfirm, setIsPasswordConfirm] = useState<boolean>(false);
+  const [recaptchaPassed, setRecaptchaPassed] = useState<boolean>(false);
   // const router = useRouter()
 
   // First Name
@@ -153,6 +155,16 @@ const Create = ({ setToken }: ComponentProps) => {
     <Redirect to="/ReflectionForm"/>
   }
 
+  // ---------------------------------------------------------------- ReCaptcha
+  const recaptchaChecked = (e:any):void => {
+    let captchaData = {
+        secret: "6Lf6DVQeAAAAAN14mandf2IVlsSwNXTDS8NRfSzF",
+        response: e  
+    }
+    let sendString = JSON.stringify(captchaData);
+    sendJSONData("http://localhost:8080/recaptcha", sendString, ():void=>(setRecaptchaPassed(true)), ():void=>(console.log("Error verifying ReCaptcha")), "POST");
+  }
+
   return (
     <div className="create-wrapper">
       <div className="create-logo">
@@ -230,6 +242,9 @@ const Create = ({ setToken }: ComponentProps) => {
               </span>
             )}
           </div>
+          <div className="recaptcha">
+              <ReCAPTCHA sitekey="6Lf6DVQeAAAAANT8S4kwjehuEXJ4nTnLjiboozQr" onChange={recaptchaChecked}/>
+          </div>
           <div className="create-button">
             <button
               className="btnCreateAccount"
@@ -240,7 +255,8 @@ const Create = ({ setToken }: ComponentProps) => {
                   islName &&
                   isEmail &&
                   isPassword &&
-                  isPasswordConfirm
+                  isPasswordConfirm &&
+                  recaptchaPassed
                 )
               }
             >
