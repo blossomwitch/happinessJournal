@@ -11,9 +11,10 @@
 }
 
 .create-content {
-    border: 3px dashed #ccc;
     padding: 2% 25% 5% 25%;
-    background-color: rgb(242, 246, 247);
+    background-color: #f5f4f2;
+    box-shadow: 10px 10px 10px 5px rgba(85, 80, 69, 0.2);
+    opacity: 0.9; 
 }
 
 h1 {
@@ -50,7 +51,7 @@ h1 {
     font-size: 14px;
 }
 .success {
-    color: green;
+    color: rgb(52, 133, 52);
 }
 .error {
    color: red;
@@ -70,7 +71,7 @@ button::after {
 }
 
 .btnCreateAccount {
-    background-color: #131250;
+    background-color: #1512da;
     border:none;
     color:white;
     border-radius: 5px;
@@ -114,4 +115,68 @@ button::after {
     border: 3px solid #131250;
 }
 
+// --------------------------------------- media query
+@media (max-width: 1500px) {
+    .create-logo > img {
+        text-align: center;
+        width: 50%;
+        height: 50%;
+    }
+
+    h1 {
+        font-family: 'Rowdies', cursive;
+        text-align: center;
+        color: #131250;
+        font-size: 20px;
+    }
+
+    .create-content {
+        padding: 2% 10% 5% 10%;
+    }
+
+    .create-input {
+        font-family: 'Rowdies', cursive;
+        font-size:12pt;
+        padding-bottom: 10px;
+    }
+
+    .create-input > input {
+        background-color: white;
+        border: solid 2px #ccc; 
+        font-size:10pt; 
+        width:100%; 
+        height: 20px;
+    }
+
+    .create-title {
+        color: #131250;
+        font-size: 15px;
+    }
+
+    .create-button {
+        text-align: center;
+    }
+    
+    .btnCreateAccount {
+        background-color: #131250;
+        border:none;
+        color:white;
+        border-radius: 5px;
+        width:100%;
+        height:35px;
+        font-size: 11pt; 
+        cursor: pointer;
+    }
+
+    .btnBack {
+        background-color: #131250;
+        border:none;
+        color:white;
+        border-radius: 5px;
+        width:100%;
+        height:35px;
+        font-size: 12pt;
+        cursor: pointer;
+    }
+}
 
