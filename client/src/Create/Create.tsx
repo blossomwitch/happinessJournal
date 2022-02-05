@@ -8,7 +8,7 @@ import img from "./logo.png";
 
 const SEND_SCRIPT: string = "http://localhost:8080/createAccount";
 
-const Create = ({ setToken }: ComponentProps) => {
+const Create = ({ setToken, studentInfo }: ComponentProps) => {
   // ---------------------------------------------------------------------------------- Input Checking
   // First name, Last name, Email, Password, Password Check
   const [fName, setfName] = useState<string>("");
@@ -77,12 +77,19 @@ const Create = ({ setToken }: ComponentProps) => {
       if (!emailRegex.test(emailCurrent)) {
         setEmailMessage("The format of the email is wrong");
         setIsEmail(false);
+      } else if (
+        studentInfo.find((student) => student.email === emailCurrent)
+      ) {
+        setEmailMessage(
+          "Email is already in use - please choose another email"
+        );
+        setIsEmail(false);
       } else {
         setEmailMessage("Good :D");
         setIsEmail(true);
       }
     },
-    []
+    [studentInfo]
   );
 
   // Password

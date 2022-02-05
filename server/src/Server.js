@@ -44,6 +44,27 @@ app.get("/get", async (request, response) => {
 });
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ^^^^^^
 
+app.get("/getStudentInfo", async (request, response) => {
+  let mongoClient = new MongoClient(URL, { useUnifiedTopology: true });
+  try {
+    await mongoClient.connect();
+
+    let db = mongoClient.db(DB_NAME);
+    let studentArray = await db.collection("student").find().toArray();
+    let json = {
+      students: studentArray,
+    };
+    response.status(200);
+    response.send(json);
+  } catch (error) {
+    response.status(500);
+    response.send({ error: error.message });
+    throw error;
+  } finally {
+    mongoClient.close();
+  }
+});
+
 // LOGIN -------------------------------------------------------------------
 app.post("/login", async (request, response) => {
   let mongoClient = new MongoClient(URL, { useUnifiedTopology: true });
