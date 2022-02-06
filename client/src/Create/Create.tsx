@@ -34,6 +34,9 @@ const Create = ({ setToken, studentInfo }: ComponentProps) => {
   const [recaptchaPassed, setRecaptchaPassed] = useState<boolean>(false);
   // const router = useRouter()
 
+  // confirmation message
+  const [confirmationVisible, setConfirmationVisible] = useState<boolean>(false);
+
   // First Name
   const onChangefName = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -161,11 +164,7 @@ const Create = ({ setToken, studentInfo }: ComponentProps) => {
 
   // if account data sends successfully - redirect to the student's reflection page
   const onSuccess = (e: any): void => {
-    const token: Token = {
-      token: "student",
-    };
-    setToken(token);
-    <Redirect to="/ReflectionForm" />;
+    setConfirmationVisible(true);
   };
 
   // ---------------------------------------------------------------- ReCaptcha
@@ -274,7 +273,11 @@ const Create = ({ setToken, studentInfo }: ComponentProps) => {
               onChange={recaptchaChecked}
             />
           </div>
-          <div className="create-button">
+          <div className="confirmation-message" style={{display: (confirmationVisible ? "block" : "none")}}>
+              <div>Your account has been successfully created. Please return to login page.</div>
+              <button className="btnBack" onClick={backButton}>Return to Login</button>
+          </div>
+          <div className="create-button" style={{display: (confirmationVisible ? "none" : "block")}}>
             <button
               className="btnCreateAccount"
               type="submit"
