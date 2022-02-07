@@ -1,14 +1,14 @@
 import { useState, useCallback } from "react";
-import { Redirect } from "react-router-dom";
-import { ComponentProps, Token } from "../Tools/data.model";
-import { sendJSONData } from "../Tools/Toolkit";
+import { ComponentProps, JSONData, Token } from "../Tools/data.model";
+import { getJSONData, sendJSONData } from "../Tools/Toolkit";
 import ReCAPTCHA from "react-google-recaptcha";
 import "./Create.scss";
 import img from "./logo.png";
 
 const SEND_SCRIPT: string = "http://localhost:8080/createAccount";
+const STUDENT_INFO = "http://localhost:8080/getStudentInfo";
 
-const Create = ({ setToken, studentInfo }: ComponentProps) => {
+const Create = ({ setToken, studentInfo, setStudentInfo }: ComponentProps) => {
   // ---------------------------------------------------------------------------------- Input Checking
   // First name, Last name, Email, Password, Password Check
   const [fName, setfName] = useState<string>("");
@@ -35,7 +35,8 @@ const Create = ({ setToken, studentInfo }: ComponentProps) => {
   // const router = useRouter()
 
   // confirmation message
-  const [confirmationVisible, setConfirmationVisible] = useState<boolean>(false);
+  const [confirmationVisible, setConfirmationVisible] =
+    useState<boolean>(false);
 
   // First Name
   const onChangefName = useCallback(
@@ -135,8 +136,19 @@ const Create = ({ setToken, studentInfo }: ComponentProps) => {
   );
 
   // ---------------------------------------------------------------- Event Handlers
-  // back button to return to login page
+  // back button to return to login page and reset the student info array to include the new student
+  const infoSent = (result: JSONData): void => {
+    setStudentInfo(result.students);
+    console.log("student info sent")
+  };  
+
   const backButton = (e: any): void => {
+    getJSONData(
+      STUDENT_INFO,
+      // (result: JSONData): void => setStudentInfo(result.students),
+      infoSent,
+      (): void => console.log("Error Retrieving JSON Data")
+    );
     const token: Token = {
       token: "",
     };
@@ -162,7 +174,7 @@ const Create = ({ setToken, studentInfo }: ComponentProps) => {
     );
   };
 
-  // if account data sends successfully - redirect to the student's reflection page
+  // if account data sends successfully
   const onSuccess = (e: any): void => {
     setConfirmationVisible(true);
   };
@@ -273,11 +285,22 @@ const Create = ({ setToken, studentInfo }: ComponentProps) => {
               onChange={recaptchaChecked}
             />
           </div>
-          <div className="confirmation-message" style={{display: (confirmationVisible ? "block" : "none")}}>
-              <div>Your account has been successfully created. Please return to login page.</div>
-              <button className="btnBack" onClick={backButton}>Return to Login</button>
+          <div
+            className="confirmation-message"
+            style={{ display: confirmationVisible ? "block" : "none" }}
+          >
+            <div>
+              Your account has been successfully created. Please return to login
+              page.
+            </div>
+            <button className="btnBack" onClick={backButton}>
+              Return to Login
+            </button>
           </div>
-          <div className="create-button" style={{display: (confirmationVisible ? "none" : "block")}}>
+          <div
+            className="create-button"
+            style={{ display: confirmationVisible ? "none" : "block" }}
+          >
             <button
               className="btnCreateAccount"
               type="submit"

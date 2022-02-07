@@ -1,7 +1,9 @@
 export interface ComponentProps {
     setToken: (userToken: Token) => void;
-    studentInfo: Student[]
-
+    studentInfo: Student[];
+    studentEmail: string | undefined
+    setStudentEmail: React.Dispatch<React.SetStateAction<string | undefined>>;
+    setStudentInfo: React.Dispatch<React.SetStateAction<Student[]>>;
 }
 
 export interface Token {
@@ -13,7 +15,7 @@ export interface JSONData {
 }
 
 export interface Student {
-    firstname: string;
-    lastname: string;
+    firstName: string;
+    lastName: string;
     email: string;
 }
