@@ -9,38 +9,94 @@ import { getJSONData } from "./Tools/Toolkit";
 import { JSONData, Student } from "./Tools/data.model";
 import { useState } from "react";
 import React from "react";
+import Navigation from "./Student/Navigation";
+import Error from "./404/Error";
+import ReflectionOverview from "./Student/ReflectionOverview";
+
+const STUDENT_INFO = "http://localhost:8080/getStudentInfo";
 
 function App() {
-
   const [studentInfo, setStudentInfo] = useState<Student[]>([]);
+  const [studentEmail, setStudentEmail] = useState<string>();
   const { token, setToken } = useToken();
 
   // set the student info into the proper state variables
-  const onResponse = (result:JSONData):void => {
+  const onResponse = (result: JSONData): void => {
     setStudentInfo(result.students);
-  }
+  };
 
-  // get all of the student info 
-  React.useEffect(():void => {
-    getJSONData("http://localhost:8080/getStudentInfo", onResponse, (): void => console.log("Error Retrieving JSON Data"));
+  // get all of the student info
+  React.useEffect((): void => {
+    getJSONData(STUDENT_INFO, onResponse, (): void =>
+      console.log("Error Retrieving JSON Data")
+    );
   }, []);
 
+  // COMMENTED OUT FOR TESTING !!!!!!!!!!!!!!!
   if (!token || token === "") {
-    return <Login setToken={setToken} studentInfo={studentInfo}/>;
+    return (
+      <Login
+        setToken={setToken}
+        setStudentInfo={setStudentInfo}
+        studentInfo={studentInfo}
+        setStudentEmail={setStudentEmail}
+        studentEmail={studentEmail}
+      />
+    );
   } else if (token === "create") {
-    return <Create setToken={setToken} studentInfo={studentInfo}/>
+    return (
+      <Create
+        setToken={setToken}
+        setStudentInfo={setStudentInfo}
+        studentInfo={studentInfo}
+        setStudentEmail={setStudentEmail}
+        studentEmail={studentEmail}
+      />
+    );
   } else if (token === "teacher") {
-    return <Overview />
+    return <Overview />;
   }
 
   return (
     <div className="wrapper">
-      <h1>Happiness Journal Web App</h1>
-      <h2>Token: {token}</h2>
       <BrowserRouter>
+        <Navigation
+          setToken={setToken}
+          setStudentInfo={setStudentInfo}
+          studentInfo={studentInfo}
+          setStudentEmail={setStudentEmail}
+          studentEmail={studentEmail}
+        ></Navigation>
         <Switch>
+          <Route path="/" exact>
+            <ReflectionForm
+              setToken={setToken}
+              setStudentInfo={setStudentInfo}
+              studentInfo={studentInfo}
+              setStudentEmail={setStudentEmail}
+              studentEmail={studentEmail}
+            />
+          </Route>
           <Route path="/ReflectionForm">
-            <ReflectionForm />
+            <ReflectionForm
+              setToken={setToken}
+              setStudentInfo={setStudentInfo}
+              studentInfo={studentInfo}
+              setStudentEmail={setStudentEmail}
+              studentEmail={studentEmail}
+            />
+          </Route>
+          <Route path="/ReflectionOverview">
+            <ReflectionOverview
+              setToken={setToken}
+              setStudentInfo={setStudentInfo}
+              studentInfo={studentInfo}
+              setStudentEmail={setStudentEmail}
+              studentEmail={studentEmail}
+            />
+          </Route>
+          <Route>
+            <Error></Error>
           </Route>
         </Switch>
       </BrowserRouter>

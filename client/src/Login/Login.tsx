@@ -1,14 +1,12 @@
 import { useState } from "react";
-// import { Link } from "react-router-dom";
 import "./Login.scss";
 import img from './logo.png';
 import { ComponentProps, Token } from "../Tools/data.model";
 import { sendJSONData } from "../Tools/Toolkit";
-// import { ComponentProps } from "../Tools/data.model";
 
 const SEND_SCRIPT: string = "http://localhost:8080/login";
 
-const Login = ({setToken}:ComponentProps) => {
+const Login = ({setToken, setStudentEmail}:ComponentProps) => {
   const [email, setEmail] = useState<string>();
   const [password, setPassword] = useState<string>();
   const [errorMsg, setErrorMsg] = useState<string>();
@@ -26,6 +24,7 @@ const Login = ({setToken}:ComponentProps) => {
 
   const onSuccess = (e: any): void => {
     setErrorMsg(undefined);
+    sessionStorage.setItem("email", JSON.stringify(email));
     if (email === "admin") {
       const token: Token = {
         token: "teacher",
@@ -98,3 +97,4 @@ const Login = ({setToken}:ComponentProps) => {
 };
 
 export default Login;
+
