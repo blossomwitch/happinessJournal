@@ -1,0 +1,501 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Carter+One&family=Fjalla+One&family=Karla&family=Paytone+One&family=Staatliches&display=swap');
+
+.student-wrapper {
+    // text-align: center;
+    padding: 7% 15% 5% 15%;
+    // background-color: rgb(255, 166, 0);
+}
+
+.student-form {
+    padding: 0% 10% 5% 10%;
+    // background-color: rgb(252, 204, 116);
+
+    // border: 3px solid black;
+    border-radius: 20px;
+    // box-shadow: .5rem .5rem 0 black;
+}
+
+.student-week {
+    text-align: center;
+    font-size: 45px;
+    font-weight: bold;
+    font-family: 'Carter One', cursive;
+    padding-bottom: 1%;
+}
+
+.student-info {
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 'Carter One', cursive;
+}
+
+
+.student-content {
+    margin-bottom: 30px;
+    padding: 35px;
+    border: none;
+    border-bottom: 2.5px solid rgb(155, 163, 197);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 12.5px;
+    background-color: #f5f4f2;
+    ::placeholder {
+        color: rgb(160, 153, 153);
+    }
+}
+
+.icon {
+    font-size: 35px;
+}
+
+.student-subtitle {
+    font-size: 30px;
+    font-family: 'Fjalla One', sans-serif;
+}
+
+// --------------------------------------- Exercise
+.student-ex-select {
+    font-size: 18px;
+    width:30%; 
+    height:50px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-family: 'Archivo', sans-serif;
+    border: none;
+    border-bottom: 2.5px solid rgb(155, 163, 197);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 12.5px;
+    background-color: #f5f4f2;
+    padding-left: 10px;
+}
+
+.student-exercise {
+    font-size: 18px;
+    font-family: 'Archivo', sans-serif;
+    width:60%; 
+    height:40px;
+    color: black;
+    border: none;
+    border-bottom: 3.5px solid rgb(155, 163, 197);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 12.5px;
+    background-color: #f5f4f2;
+    padding-left: 10px;
+}
+
+.student-exercise:focus {
+    outline: none;
+}
+
+// --------------------------------------- Meditation
+.student-meditation {
+    font-size: 18px;
+    width:30%; 
+    height:50px;
+    margin-top: 10px;
+    font-family: 'Archivo', sans-serif;
+    border: none;
+    border-bottom: 2.5px solid rgb(155, 163, 197);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 12.5px;
+    background-color: #f5f4f2;
+    padding-left: 10px; 
+}
+
+// --------------------------------------- Kindness, gratitude, journal
+.student-kindness, .student-gratitude, .student-journal {
+    font-size: 18px;
+    font-family: 'Archivo', sans-serif;
+    margin-top: 10px;
+    width:60%; 
+    height: 150px;
+    color: black;
+    border: none;
+    border-bottom: 3.5px solid rgb(155, 163, 197);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 12.5px;
+    resize: none;
+    background-color: #f5f4f2;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.student-kindness:focus, .student-gratitude:focus, .student-journal:focus {
+    outline: none;
+}
+
+hr {
+    border: 2px solid white;
+}
+
+#exercise {
+    background-color: #BFC8D7;
+}
+#meditation {
+    background-color: #E2D2D2;
+}
+#kindness {
+    background-color: #E3E2B4;
+}
+#gratitude {
+    background-color: #D2D5B8;
+}
+#journal {
+    background-color: #C9BA9B;
+}
+
+// --------------------------------------- Button Area
+.student-btnArea {
+    text-align: center;
+}
+
+.btnSave, .btnSubmit {
+    background-color: #131250;
+    border:none;
+    color:white;
+    border-radius: 5px;
+    width:30%;
+    height:50px;
+    font-size: 20pt;
+    margin-top:30px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.btnSave:hover, .btnSubmit:hover {
+    background-color: white;
+    color: #131250;
+    border: 3px solid #131250;
+}
+
+
+// --------------------------------------- media query
+@media (max-width: 1500px) {
+
+    .student-week {
+        padding-bottom: 0;
+    }
+
+    .student-form {
+        padding: 0% 7% 5% 7%;
+    }
+
+    .student-week {
+        font-size: 35px;
+        padding-bottom: 1%;
+    }
+    
+    .student-info {
+        font-size: 20px;
+    }
+
+    .icon {
+        font-size: 30px;
+    }
+
+    .student-content {
+        margin-bottom: 25px;
+        padding: 20px;
+    }
+    
+    .student-subtitle {
+        font-size: 25px;
+    }
+
+    // --------------------------------------- Exercise
+    .student-ex-select {
+        font-size: 16px;
+        width:40%; 
+        height:40px;
+        margin-top: 8px;
+        margin-bottom: 18px;
+    }
+
+    .student-exercise {
+        font-size: 16px;
+        width:60%; 
+        height:40px;
+    }
+
+    // --------------------------------------- Meditation
+    .student-meditation {
+        font-size: 16px;
+        width:40%; 
+        height:40px;
+        margin-top: 8px;
+    }
+
+    // --------------------------------------- Kindness, gratitude, journal
+    .student-kindness, .student-gratitude, .student-journal {
+        font-size: 16px;
+        font-family: 'Archivo', sans-serif;
+        margin-top: 8px;
+        width:60%; 
+        height: 120px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .student-form {
+        padding: 2% 5% 2% 5%;
+    }
+
+    .student-week {
+        font-size: 25px;
+        padding-bottom: 1%;
+    }
+    
+    .student-info {
+        font-size: 20px;
+    }
+
+    .icon {
+        font-size: 25px;
+    }
+
+    .student-content {
+        margin-bottom: 25px;
+        padding: 20px;
+    }
+    
+    .student-subtitle {
+        font-size: 20px;
+    }
+
+    // --------------------------------------- Exercise
+    .student-ex-select {
+        font-size: 14px;
+        width:40%; 
+        height:40px;
+        margin-top: 8px;
+        margin-bottom: 18px;
+    }
+
+    .student-exercise {
+        font-size: 14px;
+        width:60%; 
+        height:40px;
+    }
+
+    // --------------------------------------- Meditation
+    .student-meditation {
+        font-size: 14px;
+        width:40%; 
+        height:40px;
+        margin-top: 8px;
+    }
+
+    // --------------------------------------- Kindness, gratitude, journal
+    .student-kindness, .student-gratitude, .student-journal {
+        font-size: 14px;
+        margin-top: 8px;
+        width:60%; 
+        height: 120px;
+    }
+
+    // --------------------------------------- Button
+
+    .btnSave, .btnSubmit {
+        width:25%;
+        height:40px;
+        font-size: 17pt;
+    }
+}
+
+@media (max-width: 700px) { 
+    .student-form {
+        padding: 5% 2% 5% 2%;
+    }
+
+    .student-week {
+        font-size: 20px;
+        padding-bottom: 0.003%;
+    }
+    
+    .student-info {
+        font-size: 15px;
+    }
+
+    .icon {
+        font-size: 20px;
+    }
+
+    .student-content {
+        margin-bottom: 25px;
+        padding: 15px;
+    }
+    
+    // --------------------------------------- Exercise
+    .student-ex-select {
+        font-size: 12px;
+        width:40%; 
+        height:30px;
+        margin-top: 8px;
+        margin-bottom: 10px;
+    }
+
+    .student-exercise {
+        font-size: 12px;
+        width:70%; 
+        height:30px;
+    }
+
+    // --------------------------------------- Meditation
+    .student-meditation {
+        font-size: 12px;
+        width:40%; 
+        height:30px;
+        margin-top: 8px;
+    }
+
+    // --------------------------------------- Kindness, gratitude, journal
+    .student-kindness, .student-gratitude, .student-journal {
+        font-size: 12px;
+        margin-top: 8px;
+        width:70%; 
+        height: 80px;
+    }
+
+    // --------------------------------------- Button
+
+    .btnSave, .btnSubmit {
+        width:25%;
+        height:30px;
+        font-size: 13pt;
+    }
+}
+
+@media (max-width: 600px) { 
+    .student-form {
+        padding: 10% 2% 5% 2%;
+    }
+
+    .student-week {
+        font-size: 13px;
+        padding-bottom: 0.003%;
+    }
+    
+    .student-info {
+        font-size: 10px;
+    }
+
+    .icon {
+        font-size: 20px;
+    }
+
+    .student-content {
+        margin-bottom: 15px;
+        padding: 15px;
+    }
+
+    .student-subtitle {
+        font-size: 15px;
+    }
+    
+    // --------------------------------------- Exercise
+    .student-ex-select {
+        font-size: 10px;
+        width:35%; 
+        height:20px;
+        margin-top: 8px;
+        margin-bottom: 10px;
+    }
+
+    .student-exercise {
+        font-size: 10px;
+        width:70%; 
+        height:20px;
+    }
+
+    // --------------------------------------- Meditation
+    .student-meditation {
+        font-size: 10px;
+        width:35%; 
+        height:20px;
+        margin-top: 8px;
+    }
+
+    // --------------------------------------- Kindness, gratitude, journal
+    .student-kindness, .student-gratitude, .student-journal {
+        font-size: 10px;
+        margin-top: 8px;
+        width:70%; 
+        height: 50px;
+    }
+
+    // --------------------------------------- Button
+
+    .btnSave, .btnSubmit {
+        width:25%;
+        height:30px;
+        font-size: 11pt;
+    }
+}
+
+@media (max-width: 400px) { 
+    .student-form {
+        padding: 15% 2% 5% 2%;
+    }
+
+    .student-week {
+        font-size: 13px;
+        padding-bottom: 0.003%;
+    }
+    
+    .student-info {
+        font-size: 10px;
+    }
+
+    .icon {
+        font-size: 15px;
+    }
+
+    .student-content {
+        margin-bottom: 15px;
+        padding: 15px;
+    }
+
+    .student-subtitle {
+        font-size: 13px;
+    }
+    
+    // --------------------------------------- Exercise
+    .student-ex-select {
+        font-size: 9px;
+        width:50%; 
+        height:20px;
+        margin-top: 8px;
+        margin-bottom: 10px;
+    }
+
+    .student-exercise {
+        font-size: 9px;
+        width:80%; 
+        height:20px;
+    }
+
+    // --------------------------------------- Meditation
+    .student-meditation {
+        font-size: 9px;
+        width:50%; 
+        height:20px;
+        margin-top: 8px;
+    }
+
+    // --------------------------------------- Kindness, gratitude, journal
+    .student-kindness, .student-gratitude, .student-journal {
+        font-size: 9px;
+        margin-top: 8px;
+        width:80%; 
+        height: 50px;
+        padding-top: 7px;
+        padding-left: 7px;
+    }
+
+    // --------------------------------------- Button
+
+    .btnSave, .btnSubmit {
+        width:30%;
+        height:25px;
+        font-size: 10pt;
+    }
+}

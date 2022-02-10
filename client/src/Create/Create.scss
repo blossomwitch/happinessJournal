@@ -46,6 +46,20 @@ h1 {
     font-size: 20px;
 }
 
+.recap {
+    transform:scale(1);
+    -webkit-transform:scale(1);
+    transform-origin:0 0;
+    -webkit-transform-origin:0 0;
+}
+
+.return-alert {
+    padding-top: 10%;
+    font-family: 'Rowdies', cursive;
+    font-size: 20px;
+    color:#131250;
+}
+
 // -------------------------------------------- Validation Style
 #fname, #lname, #email, #password, #passwordCf {
     font-size: 14px;
@@ -115,6 +129,25 @@ button::after {
     border: 3px solid #131250;
 }
 
+.btnReturn {
+    background-color: #131250;
+    border:none;
+    color:white;
+    border-radius: 5px;
+    width:100%;
+    height:35px;
+    font-size: 14pt;
+    margin-top:50px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.btnReturn:hover {
+    background-color: transparent;
+    color: #131250;
+    border: 3px solid #131250;
+}
+
 // --------------------------------------- media query
 @media (max-width: 1500px) {
     .create-logo > img {
@@ -153,9 +186,17 @@ button::after {
         font-size: 15px;
     }
 
+    .return-alert {
+        padding-top: 5%;
+        font-family: 'Rowdies', cursive;
+        font-size: 14px;
+        color:#131250;
+    }
+
     .create-button {
         text-align: center;
     }
+
     
     .btnCreateAccount {
         background-color: #131250;
@@ -178,5 +219,34 @@ button::after {
         font-size: 12pt;
         cursor: pointer;
     }
+
+    .btnReturn {
+        font-size: 12pt;
+        height: 30px;
+    }
 }
 
+// Recapcha Mobile need to fix it more
+@media (max-width: 610px) {
+    .return-alert {
+        padding-top: 5%;
+        font-family: 'Rowdies', cursive;
+        font-size: 14px;
+        color:#131250;
+    }
+
+    .recap {
+        transform:scale(0.75);
+        -webkit-transform:scale(0.75);
+        transform-origin:0 0;
+        -webkit-transform-origin:0 0;
+    }
+}
+@media (max-width: 450px) {
+    .recap {
+        transform:scale(0.6);
+        -webkit-transform:scale(0.6);
+        transform-origin:0 0;
+        -webkit-transform-origin:0 0;
+    }
+}

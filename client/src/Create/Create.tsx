@@ -209,7 +209,7 @@ const Create = ({ setToken, studentInfo, setStudentInfo }: ComponentProps) => {
       </div>
       <form onSubmit={onSubmit}>
         <div className="create-content">
-          <h1>-- Create Account --</h1>
+          <h1>Create Account</h1>
           <div className="create-input">
             <span className="create-title">First Name: </span>
             <input id="firstName" type="text" onChange={onChangefName} />
@@ -279,8 +279,9 @@ const Create = ({ setToken, studentInfo, setStudentInfo }: ComponentProps) => {
               </span>
             )}
           </div>
-          <div className="recaptcha">
+          <div className="recapcha">
             <ReCAPTCHA
+              className="recap"
               sitekey="6Lf6DVQeAAAAANT8S4kwjehuEXJ4nTnLjiboozQr"
               onChange={recaptchaChecked}
             />
@@ -289,11 +290,12 @@ const Create = ({ setToken, studentInfo, setStudentInfo }: ComponentProps) => {
             className="confirmation-message"
             style={{ display: confirmationVisible ? "block" : "none" }}
           >
-            <div>
-              Your account has been successfully created. Please return to login
-              page.
+            <div
+              className="return-alert">
+              Your account has been successfully created. <br></br>
+              Please return to login page.
             </div>
-            <button className="btnBack" onClick={backButton}>
+            <button className="btnReturn" onClick={backButton}>
               Return to Login
             </button>
           </div>

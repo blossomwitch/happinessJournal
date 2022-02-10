@@ -95,7 +95,7 @@ function App() {
               studentEmail={studentEmail}
             />
           </Route>
-          <Route>
+          <Route path="/Error">
             <Error></Error>
           </Route>
         </Switch>
