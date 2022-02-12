@@ -151,7 +151,7 @@ app.post("/createAccount", async (request, response) => {
 
     // status code for created
     response.status(200);
-    response.send("Student Created");
+    response.send({success: "Account created successfully."});
   } catch (error) {
     response.status(500);
     response.send({ error: error.message });
@@ -171,16 +171,59 @@ app.post("/recaptcha", async (request, response) => {
 
     if (res.data.success) {
       response.status(200);
-      response.send("ReCaptcha Verification Passed");
+      response.send({success: "ReCaptcha Verification Passed"});
     } else {
       response.status(500);
-      response.send("ReCaptcha Verification Failed");
+      response.send({error: "ReCaptcha Verification Failed"});
     }
   } catch (error) {
     response.status(500);
     console.log("ReCaptcha error");
     response.send({ error: error.message });
     throw error;
+  }
+});
+
+// SAVE REFLECTION -------------------------------------------------------------------
+app.put("/saveReflection", async (request, response) => {
+  let mongoClient = new MongoClient(URL, { useUnifiedTopology: true });
+  // Use connect method to connect to the server
+  try {
+      await mongoClient.connect(); 
+      // get reference to desired collection in DB
+      let studentCollection = mongoClient.db(DB_NAME).collection("student");
+
+      let id = new ObjectId(request.sanitize(request.body._id));
+
+      // sanitize form input
+      request.body.saveData.exerciseTime = request.sanitize(request.body.saveData.exerciseTime);
+      request.body.saveData.exerciseType = request.sanitize(request.body.saveData.exerciseType);
+      request.body.saveData.meditation = request.sanitize(request.body.saveData.meditation);
+      request.body.saveData.kindness = request.sanitize(request.body.saveData.kindness);
+      request.body.saveData.gratitude = request.sanitize(request.body.saveData.gratitude);
+      request.body.saveData.journal = request.sanitize(request.body.saveData.journal);
+
+      // add new document into DB collection
+      let selector = { "_id": id };
+      let newValues = { $set: {"saved": request.body.saveData } };
+      let result = await studentCollection.updateOne(selector, newValues);
+
+      if (result.matchedCount <= 0) {
+          response.status(404);
+          response.send({error: "No students found with ID"});
+          mongoClient.close();
+          return;
+      }
+      
+      response.status(200);
+      response.send({success: "Data saved successfully"});
+      
+  } catch (error) {
+      response.status(500);
+      response.send({error: error.message});
+      throw error;
+  } finally {
+      mongoClient.close();
   }
 });
 
