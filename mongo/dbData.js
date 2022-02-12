@@ -28,6 +28,17 @@ db.student.insert([
     {
         "firstName": "sally",
         "lastName": "nickelby",
-        "email": "w000000@nscc.ca"
+        "email": "w000000@nscc.ca",
+        "saved":{
+            "exerciseTime":"10 min",
+            "exerciseType":"yoga", 
+            "meditation":"10min", 
+            "kindness":"Held a door", 
+            "gratitude": "thankful for spring on the way", 
+            "journal": "walked the dogs today"
+        },
+        "reflections":[
+            {"date":"feb. 12, 2022", "exerciseTime":"10 min","exerciseType":"yoga", "meditation":"10min", "kindness":"Held a door", "gratitude": "thankful for spring on the way", "journal": "walked the dogs today", "final":"got a lot done"},
+        ]
     }
 ])

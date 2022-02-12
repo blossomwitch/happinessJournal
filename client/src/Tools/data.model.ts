@@ -15,7 +15,21 @@ export interface JSONData {
 }
 
 export interface Student {
-    firstName: string;
-    lastName: string;
-    email: string;
+    _id:         string;
+    firstName:   string;
+    lastName:    string;
+    email:       string;
+    saved:       Reflection;
+    reflections: Reflection[];
+}
+
+export interface Reflection {
+    date?:        string;
+    exerciseTime: string;
+    exerciseType: string;
+    meditation:   string;
+    kindness:      string;
+    gratitude:    string;
+    journal:      string;
+    final?:       string;
 }
