@@ -12,19 +12,28 @@ import { GoBook } from "react-icons/go";
 import { sendJSONData } from "../Tools/Toolkit";
 import React from "react";
 
-const SEND_SCRIPT:string = "http://localhost:8080/saveReflection"; 
+const SAVE_REFLECTION: string = "http://localhost:8080/saveReflection";
+const SUBMIT_REFLECTION: string = "http://localhost:8080/submitReflection";
 
 const ReflectionForm = ({ studentInfo }: ComponentProps) => {
   // start and end week dates - week starts on Monday
-  const start:Date = startOfWeek(new Date(), { weekStartsOn: 1 });
-  const end:Date = endOfWeek(new Date(), { weekStartsOn: 1 });
+  const start: Date = startOfWeek(new Date(), { weekStartsOn: 1 });
+  const end: Date = endOfWeek(new Date(), { weekStartsOn: 1 });
+  const stringDate: string = `Week of ${start.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+  })} to ${end.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+  })}`;
   // get the email from session storage
-  const storedEmail:string|null = sessionStorage.getItem("email");
-  const email:string|undefined = storedEmail !== null ? JSON.parse(storedEmail) : undefined;
+  const storedEmail: string | null = sessionStorage.getItem("email");
+  const email: string | undefined =
+    storedEmail !== null ? JSON.parse(storedEmail) : undefined;
 
   // set the student to the one with the matching email
   const [student, setStudent] = React.useState<Student | undefined>();
-  
+
   // different form fields to display save data if any
   const [exerciseTime, setExerciseTime] = React.useState<string>("");
   const [exerciseType, setExerciseType] = React.useState<string>("");
@@ -33,23 +42,51 @@ const ReflectionForm = ({ studentInfo }: ComponentProps) => {
   const [gratitude, setGratitude] = React.useState<string>("");
   const [journal, setJournal] = React.useState<string>("");
 
+  // final message field
+  const [final, setFinal] = React.useState<string>("");
+
   // button message for save and submit
   const [btnMessage, setBtnMessage] = React.useState<string>("");
+  // button group visibility - submit and confirm submit with final reflection
+  const [buttonsVisible, setButtonsVisible] = React.useState<boolean>(true);
 
   // make sure the values are loaded on login and refreshes
   React.useEffect((): void => {
     setStudent(studentInfo.find((x) => x.email === email));
-    setExerciseTime((student?.saved === undefined) || student.saved.exerciseTime === null ? "" : student.saved.exerciseTime);
-    setExerciseType((student?.saved === undefined) || student.saved.exerciseType === null ? "" : student.saved.exerciseType);
-    setMeditation((student?.saved === undefined) || student.saved.meditation === null ? "" : student.saved.meditation);
-    setKindness((student?.saved === undefined) || student.saved.kindness === null ? "" : student.saved.kindness);
-    setGratitude((student?.saved === undefined) || student.saved.gratitude === null ? "" : student.saved.gratitude);
-    setJournal((student?.saved === undefined) || student.saved.journal === null ? "" : student.saved.journal);
+    setExerciseTime(
+      student?.saved === undefined || student.saved.exerciseTime === null
+        ? ""
+        : student.saved.exerciseTime
+    );
+    setExerciseType(
+      student?.saved === undefined || student.saved.exerciseType === null
+        ? ""
+        : student.saved.exerciseType
+    );
+    setMeditation(
+      student?.saved === undefined || student.saved.meditation === null
+        ? ""
+        : student.saved.meditation
+    );
+    setKindness(
+      student?.saved === undefined || student.saved.kindness === null
+        ? ""
+        : student.saved.kindness
+    );
+    setGratitude(
+      student?.saved === undefined || student.saved.gratitude === null
+        ? ""
+        : student.saved.gratitude
+    );
+    setJournal(
+      student?.saved === undefined || student.saved.journal === null
+        ? ""
+        : student.saved.journal
+    );
   }, [studentInfo, email, student?.saved]);
 
-
   // -------------------------------------------------------- fieldChanges
-  const fieldChange = (e:any):void => {
+  const fieldChange = (e: any): void => {
     setBtnMessage("");
     if (e.target.id === "exerciseTimeInput") {
       setExerciseTime(e.target.value);
@@ -63,69 +100,105 @@ const ReflectionForm = ({ studentInfo }: ComponentProps) => {
       setGratitude(e.target.value);
     } else if (e.target.id === "journalInput") {
       setJournal(e.target.value);
+    } else if (e.target.id === "finalInput") {
+      setFinal(e.target.value);
     }
-  }
+  };
 
   // -------------------------------------------------------- save and submit buttons
-  const onSave = (e:any):void => {
+  const onSave = (e: any): void => {
     e.preventDefault();
     let JSONData = {
-      "_id":student?._id,
-      "saveData": {
-        "exerciseType":exerciseType,
-        "exerciseTime":exerciseTime,
-        "meditation":meditation,
-        "kindness":kindness,
-        "gratitude":gratitude,
-        "journal":journal
-      }
+      _id: student?._id,
+      saveData: {
+        saved: "saved",
+        exerciseType: exerciseType,
+        exerciseTime: exerciseTime,
+        meditation: meditation,
+        kindness: kindness,
+        gratitude: gratitude,
+        journal: journal,
+      },
     };
-    let sendString = JSON.stringify(JSONData); 
-    sendJSONData(SEND_SCRIPT, sendString, saveSuccess, saveError, "PUT");
-  }
+    let sendString = JSON.stringify(JSONData);
+    sendJSONData(SAVE_REFLECTION, sendString, saveSuccess, saveError, "PUT");
+  };
 
   const saveSuccess = () => {
-    setBtnMessage("Save successful.")  
-}
+    setBtnMessage("Save successful.");
+  };
 
   const saveError = () => {
-    setBtnMessage("Error with saving.") 
-  }
+    setBtnMessage("Error with saving.");
+  };
 
-  // const onSubmit = (e:any):void => {
+  const onSubmit = (e: any): void => {
+    e.preventDefault();
+    setBtnMessage("");
+    setButtonsVisible(false);
+  };
 
-  // }
+  const onCancel = (e: any): void => {
+    e.preventDefault();
+    setButtonsVisible(true);
+  };
+
+  const onConfirmSubmit = (e: any): void => {
+    e.preventDefault();
+    let JSONData = {
+      _id: student?._id,
+      submitData: {
+        date: stringDate,
+        exerciseType: exerciseType,
+        exerciseTime: exerciseTime,
+        meditation: meditation,
+        kindness: kindness,
+        gratitude: gratitude,
+        journal: journal,
+        final: final
+      },
+    };
+    let sendString = JSON.stringify(JSONData);
+    sendJSONData(
+      SUBMIT_REFLECTION,
+      sendString,
+      submitSuccess,
+      submitError,
+      "PUT"
+    );
+  };
+
+  const submitSuccess = () => {
+    setBtnMessage("Reflection submitted successfully.");
+  };
+
+  const submitError = () => {
+    setBtnMessage("Error with submission.");
+  };
 
   return (
     <div className="student-wrapper">
       <form className="student-form">
         <div className="student-week">
-          <p>
-            {" "}
-            Week of&nbsp;
-            {start.toLocaleDateString("en-US", {
-              month: "long",
-              day: "numeric",
-            })}{" "}
-            to{" "}
-            {end.toLocaleDateString("en-US", {
-              month: "long",
-              day: "numeric",
-            })}
-          </p>
+          <p>{stringDate}</p>
         </div>
         <div className="student-info">
           <p>
             {student?.firstName}&nbsp;
-            {student?.lastName}'s
-            Weekly Reflections:
+            {student?.lastName}'s Weekly Reflections:
           </p>
         </div>
         <div className="student-content" id="exercise">
           <div className="student-subtitle">
-            <FaRunning className="icon"/> Exercise<hr />
+            <FaRunning className="icon" /> Exercise
+            <hr />
           </div>
-          <select id="exerciseTimeInput" className="student-ex-select" onChange={fieldChange} value={exerciseTime}>
+          <select
+            id="exerciseTimeInput"
+            className="student-ex-select"
+            onChange={fieldChange}
+            value={exerciseTime}
+          >
             <option value="">Please select an option</option>
             <option value="0 - 10 minutes">0 - 10 minutes</option>
             <option value="10 - 20 minutes">10 - 20 minutes</option>
@@ -136,13 +209,26 @@ const ReflectionForm = ({ studentInfo }: ComponentProps) => {
             <option value="More than an hour!">More than an hour!</option>
           </select>
           <br />
-          <input id="exerciseTypeInput" className="student-exercise" type="text" placeholder="type of activity" value={exerciseType} onChange={fieldChange}></input>
+          <input
+            id="exerciseTypeInput"
+            className="student-exercise"
+            type="text"
+            placeholder="type of activity"
+            value={exerciseType}
+            onChange={fieldChange}
+          ></input>
         </div>
         <div className="student-content" id="meditation">
           <div className="student-subtitle">
-            <GiMeditation className="icon"/> Meditation<hr />
+            <GiMeditation className="icon" /> Meditation
+            <hr />
           </div>
-          <select id="meditationInput" className="student-meditation" onChange={fieldChange} value={meditation}>
+          <select
+            id="meditationInput"
+            className="student-meditation"
+            onChange={fieldChange}
+            value={meditation}
+          >
             <option value="">Please select an option</option>
             <option value="0 - 10 Minutes">0 - 10 minutes</option>
             <option value="10 - 20 Minutes">10 - 20 minutes</option>
@@ -155,25 +241,88 @@ const ReflectionForm = ({ studentInfo }: ComponentProps) => {
         </div>
         <div className="student-content" id="kindness">
           <div className="student-subtitle">
-            <FaSmileWink className="icon"/> Random Act of Kindness<hr />
+            <FaSmileWink className="icon" /> Random Act of Kindness
+            <hr />
           </div>
-          <textarea id="kindnessInput" className="student-kindness" placeholder="Something kind I've done this week..." value={kindness} onChange={fieldChange}></textarea>
+          <textarea
+            id="kindnessInput"
+            className="student-kindness"
+            placeholder="Something kind I've done this week..."
+            value={kindness}
+            onChange={fieldChange}
+          ></textarea>
         </div>
         <div className="student-content" id="gratitude">
           <div className="student-subtitle">
-            <FaHandsHelping className="icon"/> Gratitude<hr />
+            <FaHandsHelping className="icon" /> Gratitude
+            <hr />
           </div>
-          <textarea id="gratitudeInput" className="student-gratitude" placeholder="Something I am grateful for this week..." onChange={fieldChange} value={gratitude}></textarea>
+          <textarea
+            id="gratitudeInput"
+            className="student-gratitude"
+            placeholder="Something I am grateful for this week..."
+            onChange={fieldChange}
+            value={gratitude}
+          ></textarea>
         </div>
         <div className="student-content" id="journal">
           <div className="student-subtitle">
-            <GoBook className="icon"/> Journal<hr />
+            <GoBook className="icon" /> Journal
+            <hr />
           </div>
-          <textarea id="journalInput" className="student-journal" placeholder="My thoughts and feelings this week..." value={journal} onChange={fieldChange}></textarea>
+          <textarea
+            id="journalInput"
+            className="student-journal"
+            placeholder="My thoughts and feelings this week..."
+            value={journal}
+            onChange={fieldChange}
+          ></textarea>
         </div>
-        <div className="student-btnArea">
-          <button className="btnSave" onClick={onSave}>Save</button>
-          <button className="btnSubmit">Submit</button>
+        <div style={{ display: buttonsVisible ? "none" : "block" }}>
+          <div>Final Reflection (this will be visible to your teacher)</div>
+          <textarea
+            id="finalInput"
+            placeholder="An overview of your week..."
+            value={final}
+            onChange={fieldChange}
+          ></textarea>
+        </div>
+        <div
+          className="student-btnArea"
+          style={{ display: buttonsVisible ? "block" : "none" }}
+        >
+          <button className="btnSave" onClick={onSave}>
+            Save
+          </button>
+          <button
+            className="btnSubmit"
+            onClick={onSubmit}
+            disabled={
+              exerciseTime === "" &&
+              exerciseType === "" &&
+              meditation === "" &&
+              gratitude === "" &&
+              kindness === "" &&
+              journal === ""
+            }
+          >
+            Submit
+          </button>
+        </div>
+        <div
+          className="student-btnArea"
+          style={{ display: buttonsVisible ? "none" : "block" }}
+        >
+          <button
+            className=""
+            disabled={final === ""}
+            onClick={onConfirmSubmit}
+          >
+            Confirm Submit
+          </button>
+          <button className="" onClick={onCancel}>
+            Cancel
+          </button>
         </div>
         <div className="btnMessages">{btnMessage}</div>
       </form>
