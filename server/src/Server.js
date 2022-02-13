@@ -196,6 +196,7 @@ app.put("/saveReflection", async (request, response) => {
       let id = new ObjectId(request.sanitize(request.body._id));
 
       // sanitize form input
+      request.body.saveData.saved = request.sanitize(request.body.saveData.saved);
       request.body.saveData.exerciseTime = request.sanitize(request.body.saveData.exerciseTime);
       request.body.saveData.exerciseType = request.sanitize(request.body.saveData.exerciseType);
       request.body.saveData.meditation = request.sanitize(request.body.saveData.meditation);
@@ -205,7 +206,7 @@ app.put("/saveReflection", async (request, response) => {
 
       // add new document into DB collection
       let selector = { "_id": id };
-      let newValues = { $set: {"saved": request.body.saveData } };
+      let newValues = { $set: {"saved": [request.body.saveData] } };
       let result = await studentCollection.updateOne(selector, newValues);
 
       if (result.matchedCount <= 0) {
@@ -217,6 +218,54 @@ app.put("/saveReflection", async (request, response) => {
       
       response.status(200);
       response.send({success: "Data saved successfully"});
+      
+  } catch (error) {
+      response.status(500);
+      response.send({error: error.message});
+      throw error;
+  } finally {
+      mongoClient.close();
+  }
+});
+
+// SUBMIT REFLECTION -------------------------------------------------------------------
+app.put("/submitReflection", async (request, response) => {
+  let mongoClient = new MongoClient(URL, { useUnifiedTopology: true });
+  // Use connect method to connect to the server
+  try {
+      await mongoClient.connect(); 
+      // get reference to desired collection in DB
+      let studentCollection = mongoClient.db(DB_NAME).collection("student");
+
+      let id = new ObjectId(request.sanitize(request.body._id));
+
+      // sanitize form input
+      request.body.submitData.date = request.sanitize(request.body.submitData.date);
+      request.body.submitData.exerciseTime = request.sanitize(request.body.submitData.exerciseTime);
+      request.body.submitData.exerciseType = request.sanitize(request.body.submitData.exerciseType);
+      request.body.submitData.meditation = request.sanitize(request.body.submitData.meditation);
+      request.body.submitData.kindness = request.sanitize(request.body.submitData.kindness);
+      request.body.submitData.gratitude = request.sanitize(request.body.submitData.gratitude);
+      request.body.submitData.journal = request.sanitize(request.body.submitData.journal);
+      request.body.submitData.final = request.sanitize(request.body.submitData.final);
+
+      // add new document into DB collection
+      let selector = { "_id": id };
+      let newValues = { $push: {"reflections": request.body.submitData } };
+      let result = await studentCollection.updateOne(selector, newValues);
+
+      // remove the save data
+      await studentCollection.updateOne(selector, {$pull : {"saved":{"saved":"saved"}}});
+
+      if (result.matchedCount <= 0) {
+          response.status(404);
+          response.send({error: "No students found with ID"});
+          mongoClient.close();
+          return;
+      }
+      
+      response.status(200);
+      response.send({success: "Data added successfully"});
       
   } catch (error) {
       response.status(500);
