@@ -19,7 +19,7 @@ export interface Student {
     firstName:   string;
     lastName:    string;
     email:       string;
-    saved:       Reflection;
+    saved:       Reflection[];
     reflections: Reflection[];
 }
 
