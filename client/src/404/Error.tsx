@@ -1,9 +1,9 @@
-const Navigation = () => {
+const Error = () => {
     return(
-        <div>
+        <div className="student-wrapper">
             Page Not Found
         </div>
     );
 }
 
-export default Navigation;
+export default Error;

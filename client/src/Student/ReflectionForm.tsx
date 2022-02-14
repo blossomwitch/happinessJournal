@@ -54,34 +54,34 @@ const ReflectionForm = ({ studentInfo }: ComponentProps) => {
   React.useEffect((): void => {
     setStudent(studentInfo.find((x) => x.email === email));
     setExerciseTime(
-      student?.saved === undefined || student.saved.exerciseTime === null
+      student?.saved[0] === undefined || student.saved[0].exerciseTime === null
         ? ""
-        : student.saved.exerciseTime
+        : student.saved[0].exerciseTime
     );
     setExerciseType(
-      student?.saved === undefined || student.saved.exerciseType === null
+      student?.saved[0] === undefined || student.saved[0].exerciseType === null
         ? ""
-        : student.saved.exerciseType
+        : student.saved[0].exerciseType
     );
     setMeditation(
-      student?.saved === undefined || student.saved.meditation === null
+      student?.saved[0] === undefined || student.saved[0].meditation === null
         ? ""
-        : student.saved.meditation
+        : student.saved[0].meditation
     );
     setKindness(
-      student?.saved === undefined || student.saved.kindness === null
+      student?.saved[0] === undefined || student.saved[0].kindness === null
         ? ""
-        : student.saved.kindness
+        : student.saved[0].kindness
     );
     setGratitude(
-      student?.saved === undefined || student.saved.gratitude === null
+      student?.saved[0] === undefined || student.saved[0].gratitude === null
         ? ""
-        : student.saved.gratitude
+        : student.saved[0].gratitude
     );
     setJournal(
-      student?.saved === undefined || student.saved.journal === null
+      student?.saved[0] === undefined || student.saved[0].journal === null
         ? ""
-        : student.saved.journal
+        : student.saved[0].journal
     );
   }, [studentInfo, email, student?.saved]);
 
@@ -144,7 +144,6 @@ const ReflectionForm = ({ studentInfo }: ComponentProps) => {
   };
 
   const onConfirmSubmit = (e: any): void => {
-    e.preventDefault();
     let JSONData = {
       _id: student?._id,
       submitData: {
@@ -177,6 +176,10 @@ const ReflectionForm = ({ studentInfo }: ComponentProps) => {
   };
 
   return (
+    student?.reflections !== undefined && student.reflections.find(r => r.date === stringDate) !== undefined
+    ?
+    <div className="student-wrapper">Reflection for the {stringDate} has been submitted!</div>
+    :
     <div className="student-wrapper">
       <form className="student-form">
         <div className="student-week">
