@@ -12,6 +12,10 @@ import { GoBook } from "react-icons/go";
 import { sendJSONData } from "../Tools/Toolkit";
 import React from "react";
 
+// img import 
+import img from "./check.png";
+
+
 const SAVE_REFLECTION: string = "http://localhost:8080/saveReflection";
 const SUBMIT_REFLECTION: string = "http://localhost:8080/submitReflection";
 
@@ -125,11 +129,11 @@ const ReflectionForm = ({ studentInfo }: ComponentProps) => {
   };
 
   const saveSuccess = () => {
-    setBtnMessage("Save successful.");
+    setBtnMessage("Save successful!");
   };
 
   const saveError = () => {
-    setBtnMessage("Error with saving.");
+    setBtnMessage("Error with saving!");
   };
 
   const onSubmit = (e: any): void => {
@@ -178,7 +182,18 @@ const ReflectionForm = ({ studentInfo }: ComponentProps) => {
   return (
     student?.reflections !== undefined && student.reflections.find(r => r.date === stringDate) !== undefined
     ?
-    <div className="student-wrapper">Reflection for the {stringDate} has been submitted!</div>
+    <div className="reflection-result">
+      <img src={ img } className="reflection-img" />
+      <h1 className="reflection-msg">
+        Thank you,<br />
+        <span className="reflection-name">
+          {student?.firstName} {student?.lastName}!
+        </span>
+      </h1>
+      <div className="reflection-content">
+        Reflection for the <span className="reflection-date">"{stringDate}"</span> has been submitted!
+      </div>
+    </div>
     :
     <div className="student-wrapper">
       <form className="student-form">
@@ -281,14 +296,21 @@ const ReflectionForm = ({ studentInfo }: ComponentProps) => {
             onChange={fieldChange}
           ></textarea>
         </div>
-        <div style={{ display: buttonsVisible ? "none" : "block" }}>
-          <div>Final Reflection (this will be visible to your teacher)</div>
-          <textarea
-            id="finalInput"
-            placeholder="An overview of your week..."
-            value={final}
-            onChange={fieldChange}
-          ></textarea>
+        <div className="btnMessages">
+          {btnMessage}
+          <div className="finalRef" style={{ display: buttonsVisible ? "none" : "block" }}>
+            <div>
+              Final Reflection <br />
+              <span className="finalRef-message">(This will be visible to your teacher)</span>
+            </div>
+            <textarea
+              className="finalRef-textarea"
+              id="finalInput"
+              placeholder="An overview of your week..."
+              value={final}
+              onChange={fieldChange}
+            ></textarea>
+          </div>
         </div>
         <div
           className="student-btnArea"
@@ -317,17 +339,16 @@ const ReflectionForm = ({ studentInfo }: ComponentProps) => {
           style={{ display: buttonsVisible ? "none" : "block" }}
         >
           <button
-            className=""
+            className="btnConfirm"
             disabled={final === ""}
             onClick={onConfirmSubmit}
           >
             Confirm Submit
           </button>
-          <button className="" onClick={onCancel}>
+          <button className="btnCancel" onClick={onCancel}>
             Cancel
           </button>
         </div>
-        <div className="btnMessages">{btnMessage}</div>
       </form>
     </div>
   );
