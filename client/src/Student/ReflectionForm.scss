@@ -1,18 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Carter+One&family=Fjalla+One&family=Karla&family=Paytone+One&family=Staatliches&display=swap');
 
 .student-wrapper {
-    // text-align: center;
     padding: 7% 15% 5% 15%;
-    // background-color: rgb(255, 166, 0);
 }
 
 .student-form {
     padding: 0% 10% 5% 10%;
-    // background-color: rgb(252, 204, 116);
-
-    // border: 3px solid black;
     border-radius: 20px;
-    // box-shadow: .5rem .5rem 0 black;
 }
 
 .student-week {
@@ -55,7 +49,7 @@
 // --------------------------------------- Exercise
 .student-ex-select {
     font-size: 18px;
-    width:30%; 
+    width:40%; 
     height:50px;
     margin-top: 10px;
     margin-bottom: 20px;
@@ -89,7 +83,7 @@
 // --------------------------------------- Meditation
 .student-meditation {
     font-size: 18px;
-    width:30%; 
+    width:40%; 
     height:50px;
     margin-top: 10px;
     font-family: 'Archivo', sans-serif;
@@ -115,8 +109,8 @@
     border-radius: 12.5px;
     resize: none;
     background-color: #f5f4f2;
-    padding-top: 10px;
-    padding-left: 10px;
+    padding-top: 15px;
+    padding-left: 15px;
 }
 
 .student-kindness:focus, .student-gratitude:focus, .student-journal:focus {
@@ -148,7 +142,7 @@ hr {
     text-align: center;
 }
 
-.btnSave, .btnSubmit {
+.btnSave {
     background-color: #131250;
     border:none;
     color:white;
@@ -157,7 +151,20 @@ hr {
     height:50px;
     font-size: 20pt;
     margin-top:30px;
-    margin-right: 20px;
+    margin-right: 5%;
+    cursor: pointer;
+}
+
+.btnSubmit {
+    background-color: #131250;
+    border:none;
+    color:white;
+    border-radius: 5px;
+    width:30%;
+    height:50px;
+    font-size: 20pt;
+    margin-top:30px;
+    margin-right: 0px;
     cursor: pointer;
 }
 
@@ -167,10 +174,123 @@ hr {
     border: 3px solid #131250;
 }
 
+.btnSave:disabled, .btnSubmit:disabled {
+    background-color: #ccc;
+    border:none;
+    color:rgb(255, 255, 255);
+    border-radius: 5px;
+    cursor: not-allowed;
+}
+
+.btnMessages {
+    border-top: 5px dashed rgb(170, 170, 170);
+    padding-top: 2%;
+    font-size: 30px;
+    text-align: center;
+    font-family: 'Carter One', cursive;
+    color: rgb(52, 133, 52);
+}
+
+.finalRef {
+    color: black;
+    font-size: 25px;
+}
+
+.finalRef-message {
+    font-size: 20px;
+}
+
+.finalRef-textarea {
+    font-size: 18px;
+    font-family: 'Archivo', sans-serif;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width:80%; 
+    height: 180px;
+    color: black;
+    border: none;
+    border-bottom: 3.5px solid rgb(155, 163, 197);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 12.5px;
+    resize: none;
+    background-color: #f7f2eb;
+    padding-top: 15px;
+    padding-left: 15px;
+}
+
+.finalRef-textarea:focus {
+    outline: none;
+}
+
+.finalRef-textarea::placeholder {
+    color: rgb(104, 101, 101);
+}
+
+.btnConfirm {
+    background-color: #131250;
+    border:none;
+    color:white;
+    border-radius: 5px;
+    width:30%;
+    height:50px;
+    font-size: 20pt;
+    margin-top:20px;
+    margin-right: 5%;
+    cursor: pointer;
+}
+
+.btnCancel {
+    background-color: #131250;
+    border:none;
+    color:white;
+    border-radius: 5px;
+    width:30%;
+    height:50px;
+    font-size: 20pt;
+    margin-top:20px;
+    cursor: pointer;
+}
+
+.btnConfirm:hover, .btnCancel:hover {
+    background-color: white;
+    color: #131250;
+    border: 3px solid #131250;
+}
+
+.btnConfirm:disabled, .btnCancel:disabled {
+    background-color: #ccc;
+    border:none;
+    color:rgb(255, 255, 255);
+    border-radius: 5px;
+    cursor: not-allowed;
+}
+
+// --------------------------------------- Reflection Submitted Page
+.reflection-result {
+    padding: 10% 5% 5% 5%;
+    text-align: center;
+}
+
+.reflection-img {
+    width: 150px;
+}
+
+.reflection-msg {
+    font-size: 60px;
+}
+
+.reflection-content {
+    text-align: center;
+    font-size: 22px;
+    font-family: 'Carter One', cursive;
+}
+
+.reflection-date {
+    color: #2ba021;
+}
 
 // --------------------------------------- media query
 @media (max-width: 1500px) {
-
     .student-week {
         padding-bottom: 0;
     }
@@ -204,7 +324,7 @@ hr {
     // --------------------------------------- Exercise
     .student-ex-select {
         font-size: 16px;
-        width:40%; 
+        width:50%; 
         height:40px;
         margin-top: 8px;
         margin-bottom: 18px;
@@ -219,7 +339,7 @@ hr {
     // --------------------------------------- Meditation
     .student-meditation {
         font-size: 16px;
-        width:40%; 
+        width:50%; 
         height:40px;
         margin-top: 8px;
     }
@@ -231,6 +351,43 @@ hr {
         margin-top: 8px;
         width:60%; 
         height: 120px;
+    }
+
+    .btnConfirm {
+        width:40%;
+    }
+
+    .btnMessages {
+        font-size: 20px;
+    }
+
+    .finalRef {
+        font-size: 20px;
+    }
+
+    .finalRef-message {
+        font-size: 17px;
+    }
+    
+    .finalRef-textarea {
+        font-size: 16px;
+        height: 120px;
+    }
+
+    .reflection-result {
+        padding: 14% 5% 5% 5%;
+    }
+    
+    .reflection-img {
+        width: 140px;
+    }
+    
+    .reflection-msg {
+        font-size: 55px;
+    }
+    
+    .reflection-content {
+        font-size: 22px;
     }
 }
 
@@ -264,7 +421,7 @@ hr {
     // --------------------------------------- Exercise
     .student-ex-select {
         font-size: 14px;
-        width:40%; 
+        width:50%; 
         height:40px;
         margin-top: 8px;
         margin-bottom: 18px;
@@ -279,7 +436,7 @@ hr {
     // --------------------------------------- Meditation
     .student-meditation {
         font-size: 14px;
-        width:40%; 
+        width:50%; 
         height:40px;
         margin-top: 8px;
     }
@@ -294,10 +451,49 @@ hr {
 
     // --------------------------------------- Button
 
-    .btnSave, .btnSubmit {
+    .btnSave, .btnSubmit, .btnCancel {
         width:25%;
         height:40px;
         font-size: 17pt;
+    }
+
+    .btnConfirm {
+        width:40%;
+        height:40px;
+        font-size: 15pt
+    }
+
+    .btnMessages {
+        font-size: 20px;
+    }
+
+    .finalRef {
+        font-size: 20px;
+    }
+
+    .finalRef-message {
+        font-size: 17px;
+    }
+
+    .finalRef-textarea {
+        font-size: 14px;
+        height: 120px;
+    }
+
+    .reflection-result {
+        padding: 20% 5% 5% 5%;
+    }
+    
+    .reflection-img {
+        width: 130px;
+    }
+    
+    .reflection-msg {
+        font-size: 45px;
+    }
+    
+    .reflection-content {
+        font-size: 15px;
     }
 }
 
@@ -327,7 +523,7 @@ hr {
     // --------------------------------------- Exercise
     .student-ex-select {
         font-size: 12px;
-        width:40%; 
+        width:50%; 
         height:30px;
         margin-top: 8px;
         margin-bottom: 10px;
@@ -342,7 +538,7 @@ hr {
     // --------------------------------------- Meditation
     .student-meditation {
         font-size: 12px;
-        width:40%; 
+        width:50%; 
         height:30px;
         margin-top: 8px;
     }
@@ -357,10 +553,49 @@ hr {
 
     // --------------------------------------- Button
 
-    .btnSave, .btnSubmit {
+    .btnSave, .btnSubmit, .btnCancel{
         width:25%;
         height:30px;
         font-size: 13pt;
+    }
+
+    .btnConfirm {
+        width:35%;
+        height:30px;
+        font-size: 12pt
+    }
+
+    .btnMessages {
+        font-size: 15px;
+    }
+    
+    .finalRef {
+        font-size: 15px;
+    }
+
+    .finalRef-message {
+        font-size: 12px;
+    }
+
+    .finalRef-textarea {
+        font-size: 12px;
+        height: 80px;
+    }
+
+    .reflection-result {
+        padding: 25% 5% 5% 5%;
+    }
+    
+    .reflection-img {
+        width: 110px;
+    }
+    
+    .reflection-msg {
+        font-size: 40px;
+    }
+    
+    .reflection-content {
+        font-size: 14px;
     }
 }
 
@@ -394,7 +629,7 @@ hr {
     // --------------------------------------- Exercise
     .student-ex-select {
         font-size: 10px;
-        width:35%; 
+        width:50%; 
         height:20px;
         margin-top: 8px;
         margin-bottom: 10px;
@@ -409,7 +644,7 @@ hr {
     // --------------------------------------- Meditation
     .student-meditation {
         font-size: 10px;
-        width:35%; 
+        width:50%; 
         height:20px;
         margin-top: 8px;
     }
@@ -424,10 +659,49 @@ hr {
 
     // --------------------------------------- Button
 
-    .btnSave, .btnSubmit {
+    .btnSave, .btnSubmit, .btnCancel {
         width:25%;
         height:30px;
         font-size: 11pt;
+    }
+
+    .btnConfirm {
+        width:45%;
+        height:30px;
+        font-size: 10pt
+    }
+
+    .btnMessages {
+        font-size: 10px;
+    }
+
+    .finalRef {
+        font-size: 10px;
+    }
+
+    .finalRef-message {
+        font-size: 9px;
+    }
+
+    .finalRef-textarea {
+        font-size: 10px;
+        height: 50px;
+    }
+
+    .reflection-result {
+        padding: 35% 5% 5% 5%;
+    }
+    
+    .reflection-img {
+        width: 80px;
+    }
+    
+    .reflection-msg {
+        font-size: 30px;
+    }
+    
+    .reflection-content {
+        font-size: 10px;
     }
 }
 
@@ -461,7 +735,7 @@ hr {
     // --------------------------------------- Exercise
     .student-ex-select {
         font-size: 9px;
-        width:50%; 
+        width:60%; 
         height:20px;
         margin-top: 8px;
         margin-bottom: 10px;
@@ -476,7 +750,7 @@ hr {
     // --------------------------------------- Meditation
     .student-meditation {
         font-size: 9px;
-        width:50%; 
+        width:60%; 
         height:20px;
         margin-top: 8px;
     }
@@ -493,9 +767,44 @@ hr {
 
     // --------------------------------------- Button
 
-    .btnSave, .btnSubmit {
-        width:30%;
+    .btnSave, .btnSubmit, .btnCancel {
+        width:35%;
         height:25px;
         font-size: 10pt;
+    }
+
+    .btnConfirm {
+        width: 55%;
+        height:25px;
+        font-size: 9pt
+    }
+
+    .btnMessages {
+        font-size: 10px;
+    }
+
+    .finalRef {
+        font-size: 10px;
+    }
+
+    .finalRef-textarea {
+        font-size: 9px;
+        height: 50px;
+    }
+
+    .reflection-result {
+        padding: 35% 5% 5% 5%;
+    }
+    
+    .reflection-img {
+        width: 80px;
+    }
+    
+    .reflection-msg {
+        font-size: 25px;
+    }
+    
+    .reflection-content {
+        font-size: 10px;
     }
 }
