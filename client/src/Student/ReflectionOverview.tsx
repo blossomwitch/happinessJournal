@@ -4,7 +4,7 @@ import { ComponentProps, Reflection, Student } from "../Tools/data.model";
 import { BsCaretDownFill } from 'react-icons/bs'
 import { BsCaretUpFill } from 'react-icons/bs'
 
-const ReflectionOverview = ({ studentInfo, studentEmail }: ComponentProps) => {
+const ReflectionOverview = ({ studentInfo }: ComponentProps) => {
 
     // get the email from session storage
     const storedEmail: string | null = sessionStorage.getItem("email");
@@ -15,17 +15,22 @@ const ReflectionOverview = ({ studentInfo, studentEmail }: ComponentProps) => {
     const [reflections, setReflections] = React.useState<Reflection[] | undefined>([]);
     const [showMe, setShowMe] = React.useState<string>("");
 
+    // set the student and the reflections
     React.useEffect((): void => {
         setStudent(studentInfo.find((x) => x.email === email));
-        setReflections(student?.reflections);
+        // reverse the reflections array so the newest date is first
+        let reflectionTemp = student?.reflections;
+        reflectionTemp?.reverse();
+        setReflections(reflectionTemp);
     }, [studentInfo, email, student?.reflections]);
 
+    // on click show/hide that dates content
     const arrowClick = (e:any):void => {
         showMe === e.target.id 
         ?
         setShowMe("")
         :
-        setShowMe(e.target.id);
+        setShowMe(e.target.id); 
     }
 
     return(
@@ -35,7 +40,7 @@ const ReflectionOverview = ({ studentInfo, studentEmail }: ComponentProps) => {
             </div>
             <div>
                 {reflections?.map((reflection) => 
-                    <div>
+                    <div> 
                         <div id={reflection.date} onClick={arrowClick}>
                             {reflection.date} 
                             {showMe === reflection.date
