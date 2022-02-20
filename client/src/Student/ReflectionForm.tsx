@@ -183,7 +183,7 @@ const ReflectionForm = ({ studentInfo }: ComponentProps) => {
     student?.reflections !== undefined && student.reflections.find(r => r.date === stringDate) !== undefined
     ?
     <div className="reflection-result">
-      <img src={ img } className="reflection-img" />
+      <img src={ img } alt="green check mark" className="reflection-img" />
       <h1 className="reflection-msg">
         Thank you,<br />
         <span className="reflection-name">
@@ -248,13 +248,11 @@ const ReflectionForm = ({ studentInfo }: ComponentProps) => {
             value={meditation}
           >
             <option value="">Please select an option</option>
-            <option value="0 - 10 Minutes">0 - 10 minutes</option>
-            <option value="10 - 20 Minutes">10 - 20 minutes</option>
-            <option value="20 - 30 Minutes">20 - 30 minutes</option>
-            <option value="30 - 40 Minutes">30 - 40 minutes</option>
-            <option value="40 - 50 Minutes">40 - 50 minutes</option>
-            <option value="50 - 60 Minutes">50 - 60 minutes</option>
-            <option value="More than an hour!">More than an hour!</option>
+            <option value="0 - 5 minutes">0 - 5 minutes</option>
+            <option value="5 - 10 minutes">5 - 10 minutes</option>
+            <option value="10 - 15 minutes">10 - 15 minutes</option>
+            <option value="15 - 20 minutes">15 - 20 minutes</option>
+            <option value="More than 20 minutes!">More than 20 minutes!</option>
           </select>
         </div>
         <div className="student-content" id="kindness">
