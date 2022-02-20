@@ -20,6 +20,7 @@ const Navigation = ({ setToken }: ComponentProps) => {
         const token: Token = {
           token: "",
         };
+        sessionStorage.setItem("email", "");
         setToken(token);
       };
 
@@ -31,10 +32,10 @@ const Navigation = ({ setToken }: ComponentProps) => {
                     <AiOutlineMenu className="nav-toggler" onClick={onClickMenu}/>
                     <div className="nav-menu" style={{ display: menuVisible ? "block" : "none"}}>
                         <div className="nav-item">
-                            <Link to="/" className="nav-link">Reflections Form</Link>
+                            <Link to="/" className="nav-link" onClick={onClickMenu}>Reflections Form</Link>
                         </div>
                         <div className="nav-item">
-                            <Link to="/ReflectionOverview" className="nav-link">Reflections Overview</Link>
+                            <Link to="/ReflectionOverview" className="nav-link" onClick={onClickMenu}>Reflections Overview</Link>
                         </div>
                         <div className="nav-item">
                             <Link to="/" className="nav-link" onClick={logoutButton}>Logout</Link>
