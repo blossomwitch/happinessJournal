@@ -1,4 +1,357 @@
-.reflectionList {
-    display: flex;
-    flex-direction: column-reverse;
+.overview-wrapper {
+    padding: 7% 15% 5% 15%;
+}
+
+.overview-title {
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: 'Carter One', cursive;
+    padding-bottom: 3%;
+}
+
+.overview-content {
+    padding: 0% 7% 2% 7%;
+}
+
+.overview-click {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 35px;
+    border: none;
+    border-bottom: 2.5px solid rgb(155, 163, 197);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 12.5px;
+    background-color: rgb(205, 210, 230);
+}
+
+.overview-click:hover {
+    background-color: rgb(150, 160, 202);
+    transition: .35s ease all;
+}
+
+.overview-info {
+    margin-bottom: 30px;
+    padding: 35px;
+    border: none;
+    border-bottom: 2.5px solid rgb(155, 163, 197);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 12.5px;
+    background-color: rgb(219, 213, 213);
+}
+
+.overview-card {
+    margin-bottom: 30px;
+    padding: 35px;
+    border: none;
+    border-bottom: 2.5px solid rgb(155, 163, 197);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 12.5px;
+}
+
+#overview {
+    background-color: #f8d7a8;
+    margin-bottom: 0px;
+}
+
+.overview-subtitle {
+    font-size: 25px;
+    font-family: 'Fjalla One', sans-serif;
+}
+
+.overview-item {
+    font-size: 20px;
+    font-family: 'Archivo', sans-serif;
+}
+
+.overview-bold {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+// --------------------------------------- media query
+@media (max-width: 1500px) {
+    .overview-wrapper {
+        padding: 10% 15% 5% 15%;
+    }
+
+    .overview-title {
+        font-size: 35px;
+        padding-bottom: 3%;
+    }
+
+    .overview-content {
+        padding: 0% 10% 2% 10%;
+    }
+
+    .overview-click {
+        font-size: 25px;
+        padding: 25px;
+    }
+
+    .overview-subtitle {
+        font-size: 20px;
+    }
+    
+    .overview-item {
+        font-size: 18px;
+    }
+    
+    .overview-bold {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .overview-wrapper {
+        padding: 10% 15% 5% 15%;
+    }
+
+    .overview-title {
+        font-size: 30px;
+        padding-bottom: 2%;
+    }
+
+    .overview-content {
+        padding: 0% 10% 2% 10%;
+    }
+
+    .overview-click {
+        font-size: 22px;
+        padding: 20px;
+    }
+
+    .overview-info {
+        margin-bottom: 20px;
+        padding: 30px;
+    }
+
+    .overview-card {
+        padding: 25px;
+    }
+
+    .overview-subtitle {
+        font-size: 18px;
+    }
+    
+    .overview-item {
+        font-size: 16px;
+        font-family: 'Archivo', sans-serif;
+    }
+    
+    .overview-bold {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 900px) { 
+    .overview-wrapper {
+        padding: 12% 12% 5% 12%;
+    }
+
+    .overview-title {
+        font-size: 25px;
+        padding-bottom: 2%;
+    }
+
+    .overview-content {
+        padding: 0% 10% 2% 10%;
+    }
+
+    .overview-info {
+        margin-bottom: 20px;
+        padding: 25px;
+    }
+
+    .overview-card {
+        padding: 18px;
+    }
+
+    .overview-click {
+        font-size: 18px;
+        padding: 18px;
+    }
+
+    .overview-subtitle {
+        font-size: 16px;
+    }
+    
+    .overview-item {
+        font-size: 14px;
+        font-family: 'Archivo', sans-serif;
+    }
+    
+    .overview-bold {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 700px) { 
+    .overview-wrapper {
+        padding: 13% 10% 5% 10%;
+    }
+
+    .overview-title {
+        font-size: 25px;
+        padding-bottom: 3%;
+    }
+
+    .overview-content {
+        padding: 0% 10% 2% 10%;
+    }
+
+    .overview-info {
+        margin-bottom: 15px;
+        padding: 25px;
+    }
+
+    .overview-card {
+        padding: 16px;
+    }
+
+    .overview-click {
+        font-size: 16px;
+        padding: 16px;
+    }
+
+    .overview-subtitle {
+        font-size: 15px;
+    }
+    
+    .overview-item {
+        font-size: 13px;
+    }
+    
+    .overview-bold {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 600px) { 
+    .overview-wrapper {
+        padding: 15% 5% 5% 5%;
+    }
+
+    .overview-title {
+        font-size: 23px;
+        padding-bottom: 5%;
+    }
+
+    .overview-content {
+        padding: 0% 8% 2% 8%;
+    }
+
+    .overview-info {
+        padding: 25px;
+    }
+
+    .overview-card {
+        padding: 16px;
+    }
+
+    .overview-click {
+        font-size: 14px;
+        padding: 14px;
+    }
+
+    .overview-subtitle {
+        font-size: 13px;
+    }
+    
+    .overview-item {
+        font-size: 11px;
+    }
+    
+    .overview-bold {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 500px) { 
+    .overview-wrapper {
+        padding: 20% 5% 5% 5%;
+    }
+
+    .overview-title {
+        font-size: 20px;
+        padding-bottom: 5%;
+    }
+
+    .overview-content {
+        padding: 0% 7% 2% 7%;
+    }
+
+    .overview-info {
+        padding: 16px;
+    }
+
+    .overview-card {
+        padding: 16px;
+    }
+
+    .overview-click {
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    .overview-subtitle {
+        font-size: 12px;
+    }
+    
+    .overview-item {
+        font-size: 10px;
+    }
+    
+    .overview-bold {
+        font-size: 11px;
+    }
+
+    .icon {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 400px) { 
+    .overview-wrapper {
+        padding: 20% 5% 5% 5%;
+    }
+
+    .overview-title {
+        font-size: 18px;
+        padding-bottom: 5%;
+    }
+
+    .overview-content {
+        padding: 0% 5% 2% 5%;
+    }
+
+    .overview-info {
+        padding: 15px;
+    }
+
+    .overview-card {
+        padding: 15px;
+    }
+
+    .overview-click {
+        font-size: 11px;
+        padding: 9px;
+    }
+
+    .overview-subtitle {
+        font-size: 11px;
+    }
+    
+    .overview-item {
+        font-size: 9px;
+    }
+    
+    .overview-bold {
+        font-size: 10px;
+    }
+
+    .icon {
+        font-size: 13px;
+    }
 }

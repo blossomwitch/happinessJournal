@@ -4,6 +4,16 @@ import { ComponentProps, Reflection, Student } from "../Tools/data.model";
 import { BsCaretDownFill } from 'react-icons/bs'
 import { BsCaretUpFill } from 'react-icons/bs'
 
+// icon import
+import { FaRunning } from "react-icons/fa";
+import { GiMeditation } from "react-icons/gi";
+import { FaSmileWink } from "react-icons/fa";
+import { FaHandsHelping } from "react-icons/fa";
+import { GoBook } from "react-icons/go";
+import { GrOverview } from "react-icons/gr";
+
+import "./ReflectionOverview.scss";
+
 const ReflectionOverview = ({ studentInfo }: ComponentProps) => {
 
     // get the email from session storage
@@ -34,15 +44,15 @@ const ReflectionOverview = ({ studentInfo }: ComponentProps) => {
     }
 
     return(
-        <div>
-            <div style={{paddingTop: '90px'}}>
+        <div className="overview-wrapper">
+            <div className="overview-title">
                 Past Reflections for {student?.firstName} {student?.lastName}
             </div>
-            <div>
+            <div className="overview-content">
                 {reflections?.map((reflection) => 
                     <div> 
-                        <div id={reflection.date} onClick={arrowClick}>
-                            {reflection.date} 
+                        <div className="overview-click" id={reflection.date} onClick={arrowClick}>
+                            {reflection.date}
                             {showMe === reflection.date
                             ?
                             <BsCaretUpFill/>
@@ -50,23 +60,78 @@ const ReflectionOverview = ({ studentInfo }: ComponentProps) => {
                             <BsCaretDownFill/>
                             }
                         </div>
-                        <div style={{ display: showMe === reflection.date ? "block" : "none" }}>
-                            <div>Exercise:</div>
-                            <div>Time - {reflection.exerciseTime}</div>
-                            <div>Type - {reflection.exerciseType}</div>
-                            <div>Meditation:</div>
-                            <div>Time - {reflection.meditation}</div>
-                            <div>Random act of kindness:</div>
-                            <div>{reflection.kindness}</div>
-                            <div>Something I was grateful for:</div>
-                            <div>{reflection.gratitude}</div>
-                            <div>My journal for the week:</div>
-                            <div>{reflection.journal}</div>
-                            <div>My overall reflection for the week:</div>
-                            <div>{reflection.final}</div>
+                        <div className="overview-info" style={{ display: showMe === reflection.date ? "block" : "none"}}>
+                            <div className="overview-card " id="exercise">
+                                <div className="overview-subtitle">
+                                    <FaRunning className="icon" /> Exercise:
+                                    <hr />
+                                </div>
+                                <div className="overview-item">
+                                    <span className="overview-bold">Time</span> - {reflection.exerciseTime}
+                                </div>
+                                <div className="overview-item">
+                                    <span className="overview-bold">Type</span> - {reflection.exerciseType}
+                                </div>
+                            </div>
+                            <div className="overview-card" id="meditation"> 
+                                <div className="overview-subtitle">
+                                    <GiMeditation className="icon" /> Meditation:
+                                    <hr />
+                                </div>
+                                <div className="overview-item">
+                                    <span className="overview-bold">Time</span> - {reflection.meditation}
+                                </div>
+                            </div>
+                            <div className="overview-card" id="kindness">                             
+                                <div className="overview-subtitle">
+                                    <FaSmileWink className="icon" /> Random act of kindness:
+                                    <hr />
+                                </div>
+                                <div className="overview-item">{reflection.kindness}</div>
+                            </div>
+                            <div className="overview-card" id="gratitude">                             
+                                <div className="overview-subtitle">
+                                    <FaHandsHelping className="icon" /> Something I was grateful for:
+                                    <hr />
+                                </div>
+                                <div className="overview-item">
+                                    {reflection.gratitude}
+                                </div>
+                            </div>
+                            <div className="overview-card" id="journal">                             
+                                <div className="overview-subtitle">
+                                    <GoBook className="icon" /> My journal for the week:
+                                    <hr />
+                                </div>
+                                <div className="overview-item">
+                                    {reflection.journal}
+                                </div>
+                            </div>
+                            <div className="overview-card" id="overview">                             
+                                <div className="overview-subtitle">
+                                    <GrOverview className="icon" /> My overall reflection for the week:
+                                    <hr />
+                                </div>
+                                <div className="overview-item">{reflection.final}</div>
+                            </div>
                         </div>
                     </div>
                 )}
+            </div>
+            <div className="overview-content">
+                <div className="overview-click">
+                    Test Card
+                </div>
+            </div>
+            <div className="overview-content">
+                <div className="overview-click">
+                    Test Card
+                </div>
+            </div>
+            <div className="overview-content">
+                <div className="overview-click">
+                    Test Card
+                </div>
             </div>
         </div>
         

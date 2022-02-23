@@ -61,7 +61,7 @@
     transition: 0.5s ease all;
     text-align: center;
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.8);
     left: 0;
 }
 
@@ -71,7 +71,7 @@
 }
 
 .header-area > .nav > .nav-menu > .nav-item:hover * {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
 .header-area > .nav > .nav-menu > .nav-item > .nav-link {
