@@ -32,7 +32,6 @@ function App() {
     );
   }, []);
 
-  // COMMENTED OUT FOR TESTING !!!!!!!!!!!!!!!
   if (!token || token === "") {
     return (
       <Login
@@ -54,7 +53,13 @@ function App() {
       />
     );
   } else if (token === "teacher") {
-    return <Overview />;
+    return <Overview           
+        setToken={setToken}
+        setStudentInfo={setStudentInfo}
+        studentInfo={studentInfo}
+        setStudentEmail={setStudentEmail}
+        studentEmail={studentEmail}
+    />;
   }
 
   return (

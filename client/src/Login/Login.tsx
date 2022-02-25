@@ -81,7 +81,6 @@ const Login = ({setToken, setStudentEmail}:ComponentProps) => {
             <span className="errormsg">{errorMsg}</span>
           <div>
             <button className="btnLogin" type="submit">Login</button>
-            <button className="btnLogin-teacher" type="submit">Teacher Login</button>  
           </div>
         </form>
         <button className="btnCreate" onClick={create}>Create User Account</button>
