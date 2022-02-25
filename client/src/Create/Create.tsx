@@ -155,6 +155,13 @@ const Create = ({ setToken, studentInfo, setStudentInfo }: ComponentProps) => {
     setToken(token);
   };
 
+  const cancelButton = (e:any):void => {
+    const token: Token = {
+      token: "",
+    };
+    setToken(token);
+  }
+
   // send account data to the server and redirect to their reflections page
   const onSubmit = (e: any): void => {
     e.preventDefault();
@@ -320,7 +327,7 @@ const Create = ({ setToken, studentInfo, setStudentInfo }: ComponentProps) => {
               {" "}
               Create Account
             </button>
-            <button className="btnBack" onClick={backButton}>
+            <button className="btnBack" onClick={cancelButton}>
               Back
             </button>
           </div>

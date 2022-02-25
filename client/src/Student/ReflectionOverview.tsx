@@ -48,9 +48,9 @@ const ReflectionOverview = ({ studentInfo }: ComponentProps) => {
             <div className="overview-title">
                 Past Reflections for {student?.firstName} {student?.lastName}
             </div>
-            <div className="overview-content">
+            <div>
                 {reflections?.map((reflection) => 
-                    <div> 
+                    <div className="overview-content"> 
                         <div className="overview-click" id={reflection.date} onClick={arrowClick}>
                             {reflection.date}
                             {showMe === reflection.date
@@ -117,21 +117,6 @@ const ReflectionOverview = ({ studentInfo }: ComponentProps) => {
                         </div>
                     </div>
                 )}
-            </div>
-            <div className="overview-content">
-                <div className="overview-click">
-                    Test Card
-                </div>
-            </div>
-            <div className="overview-content">
-                <div className="overview-click">
-                    Test Card
-                </div>
-            </div>
-            <div className="overview-content">
-                <div className="overview-click">
-                    Test Card
-                </div>
             </div>
         </div>
         
