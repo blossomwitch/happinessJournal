@@ -4,6 +4,7 @@ import { getJSONData, sendJSONData } from "../Tools/Toolkit";
 import ReCAPTCHA from "react-google-recaptcha";
 import "./Create.scss";
 import img from "./logo.png";
+import { Link } from "react-router-dom";
 
 const SEND_SCRIPT: string = "http://localhost:8080/createAccount";
 const STUDENT_INFO = "http://localhost:8080/getStudentInfo";
@@ -149,18 +150,7 @@ const Create = ({ setToken, studentInfo, setStudentInfo }: ComponentProps) => {
       infoSent,
       (): void => console.log("Error Retrieving JSON Data")
     );
-    const token: Token = {
-      token: "",
-    };
-    setToken(token);
   };
-
-  const cancelButton = (e:any):void => {
-    const token: Token = {
-      token: "",
-    };
-    setToken(token);
-  }
 
   // send account data to the server and redirect to their reflections page
   const onSubmit = (e: any): void => {
@@ -302,9 +292,11 @@ const Create = ({ setToken, studentInfo, setStudentInfo }: ComponentProps) => {
               Your account has been successfully created. <br></br>
               Please return to login page.
             </div>
-            <button className="btnReturn" onClick={backButton}>
-              Return to Login
-            </button>
+            <Link to="/">
+              <button className="btnReturn" onClick={backButton}>
+                Return to Login
+              </button>
+            </Link>
           </div>
           <div
             className="create-button"
@@ -327,9 +319,9 @@ const Create = ({ setToken, studentInfo, setStudentInfo }: ComponentProps) => {
               {" "}
               Create Account
             </button>
-            <button className="btnBack" onClick={cancelButton}>
-              Back
-            </button>
+            <Link to="/">
+              <button className="btnBack" onClick={backButton}>Back</button>
+            </Link>
           </div>
         </div>
       </form>
