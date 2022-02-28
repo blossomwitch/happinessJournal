@@ -316,6 +316,49 @@ app.delete("/deleteStudent", async (request, response) => {
   }
 });
 
+app.delete("/deleteAllStudents", async (request, response) => {
+  // construct MongoClient object for working with MongoDB
+  let mongoClient = new MongoClient(URL, { useUnifiedTopology: true });
+  // Use connect method to connect to the server
+  try {
+      await mongoClient.connect();
+      // get reference to desired collections in DB
+      let studentCollection = mongoClient.db(DB_NAME).collection("student");
+      let loginCollection = mongoClient.db(DB_NAME).collection("login");
+
+      let emails = request.body.emails;
+      
+      for (let i=0; i<emails.length; i++) {
+
+        // delete from login and student collections
+        let selector = { "email": emails[i] };
+        let loginResult = await loginCollection.deleteOne(selector); 
+        let studentResult = await studentCollection.deleteOne(selector);
+
+        // Check to make sure something was deleted
+        if (loginResult.deletedCount <= 0) {
+            response.status(404);
+            response.send({error: 'No student found with email'});
+            return;
+        }
+        if (studentResult.deletedCount <= 0) {
+          response.status(404);
+          response.send({error: 'No student found with email'});
+          return;
+        } 
+      }
+
+      response.status(200);
+      response.send({success: "Students deleted successfully"});
+  } catch (error) {
+      response.status(500);
+      response.send({error: error.message});
+      throw error;
+  } finally {
+      mongoClient.close();
+  }
+});
+
 app.use((request, response) => {
   response.sendFile(path.join(CLIENT_BUILD_PATH, "index.html"));
 });

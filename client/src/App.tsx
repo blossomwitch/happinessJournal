@@ -12,6 +12,8 @@ import React from "react";
 import Navigation from "./Student/Navigation";
 import Error from "./404/Error";
 import ReflectionOverview from "./Student/ReflectionOverview";
+import TeacherNavigation from "./Teacher/TeacherNavigation"; 
+import StudentList from "./Teacher/StudentList";
 
 const STUDENT_INFO = "http://localhost:8080/getStudentInfo";
 
@@ -34,32 +36,61 @@ function App() {
 
   if (!token || token === "") {
     return (
-      <Login
-        setToken={setToken}
-        setStudentInfo={setStudentInfo}
-        studentInfo={studentInfo}
-        setStudentEmail={setStudentEmail}
-        studentEmail={studentEmail}
-      />
-    );
-  } else if (token === "create") {
-    return (
-      <Create
-        setToken={setToken}
-        setStudentInfo={setStudentInfo}
-        studentInfo={studentInfo}
-        setStudentEmail={setStudentEmail}
-        studentEmail={studentEmail}
-      />
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" exact>
+            <Login
+              setToken={setToken}
+              setStudentInfo={setStudentInfo}
+              studentInfo={studentInfo}
+              setStudentEmail={setStudentEmail}
+              studentEmail={studentEmail}
+            />
+          </Route>
+          <Route path="/createAccount">
+            <Create
+              setToken={setToken}
+              setStudentInfo={setStudentInfo}
+              studentInfo={studentInfo}
+              setStudentEmail={setStudentEmail}
+              studentEmail={studentEmail}
+            />
+          </Route>
+        </Switch>
+      </BrowserRouter>
     );
   } else if (token === "teacher") {
-    return <Overview           
-        setToken={setToken}
-        setStudentInfo={setStudentInfo}
-        studentInfo={studentInfo}
-        setStudentEmail={setStudentEmail}
-        studentEmail={studentEmail}
-    />;
+    return (
+      <BrowserRouter>
+        <TeacherNavigation
+          setToken={setToken}
+          setStudentInfo={setStudentInfo}
+          studentInfo={studentInfo}
+          setStudentEmail={setStudentEmail}
+          studentEmail={studentEmail}
+        ></TeacherNavigation>
+        <Switch>
+          <Route path="/" exact>
+            <Overview
+              setToken={setToken}
+              setStudentInfo={setStudentInfo}
+              studentInfo={studentInfo}
+              setStudentEmail={setStudentEmail}
+              studentEmail={studentEmail}
+            />
+          </Route>
+          <Route path="/studentList" exact>
+            <StudentList
+                setToken={setToken}
+                setStudentInfo={setStudentInfo}
+                studentInfo={studentInfo}
+                setStudentEmail={setStudentEmail}
+                studentEmail={studentEmail}
+              />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    );
   }
 
   return (

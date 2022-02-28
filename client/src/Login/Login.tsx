@@ -3,6 +3,7 @@ import "./Login.scss";
 import img from './logo.png';
 import { ComponentProps, Token } from "../Tools/data.model";
 import { sendJSONData } from "../Tools/Toolkit";
+import { Link } from "react-router-dom";
 
 const SEND_SCRIPT: string = "http://localhost:8080/login";
 
@@ -43,14 +44,6 @@ const Login = ({setToken, setStudentEmail}:ComponentProps) => {
     console.log("Error sending login information to server");
   };
 
-  // set the token to view the create account page
-  const create = (e:any):void => {
-    const token:Token = {
-      token: "create"
-    };
-    setToken(token);
-  }
-
   return (
     <div className="login-wrapper">
       <div className="login-logo">
@@ -83,7 +76,7 @@ const Login = ({setToken, setStudentEmail}:ComponentProps) => {
             <button className="btnLogin" type="submit">Login</button>
           </div>
         </form>
-        <button className="btnCreate" onClick={create}>Create User Account</button>
+        <Link to="/createAccount"><button className="btnCreate">Create User Account</button></Link>
         <div
           style={{
             display: (errorMsg === undefined ? true : false) ? "none" : "block",

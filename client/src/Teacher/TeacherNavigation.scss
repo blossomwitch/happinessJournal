@@ -1,0 +1,167 @@
+// font
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Paytone+One&family=Staatliches&display=swap');
+
+
+.header-area {
+    padding: 15px;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 99;
+    background-color: #131250;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
+}
+
+.nav-fade {
+    animation-name: nav-fade;
+    animation-duration: 0.5s;
+    -webkit-animation-name: nav-fade;
+    -webkit-animation-duration: 0.5s;
+}
+
+@keyframes nav-fade {
+    from { opacity: .4}
+    to { opacity: 1 }
+}
+
+@-webkit-keyframes nav-fade {
+    from { opacity: .4}
+    to { opacity: 1 }
+}
+
+.header-area.nav-fixed {
+    position: fixed;
+}
+
+.header-area > .nav {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.header-area > .nav > .nav-logo {
+    top: 50%;
+    font-size: 50px;
+    color:white;
+    font-family: 'Staatliches', cursive;
+}
+
+.header-area > .nav > .nav-toggler  {
+    color: white;
+    font-size: 50px;
+    float: right;
+    height: 70px;
+    line-height: 70px;
+    cursor: pointer;
+}
+
+.header-area > .nav > .nav-menu {
+    top: 100px;
+    width: 100%;
+    transition: 0.5s ease all;
+    text-align: center;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    left: 0;
+}
+
+.header-area > .nav > .nav-menu > .nav-item {
+    height: 80px;
+    line-height: 80px;
+}
+
+.header-area > .nav > .nav-menu > .nav-item:hover * {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.header-area > .nav > .nav-menu > .nav-item > .nav-link {
+    font-size: 30px;
+    display: block;
+    color: white;
+    transition:600ms ease all;
+    outline:none;
+    
+    font-family: 'Staatliches', cursive;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+// --------------------------------------- media query
+@media (max-width: 1200px) {
+    .header-area > .nav > .nav-logo {
+        font-size: 35px;
+    }
+
+    .header-area > .nav > .nav-toggler  {
+        color: white;
+        font-size: 35px;
+        float: right;
+        height: 45px;
+        line-height: 45px;
+        cursor: pointer;
+    }
+
+    .header-area > .nav > .nav-menu {
+        top: 75px;
+    }
+
+    .header-area > .nav > .nav-menu > .nav-item {
+        height: 70px;
+        line-height: 70px;
+    }
+
+    .header-area > .nav > .nav-menu > .nav-item > .nav-link {
+        font-size: 25px;
+    }
+}
+
+@media (max-width: 700px) {
+    .header-area > .nav {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .header-area > .nav > .nav-logo {
+        font-size: 25px;
+    }
+
+    .header-area > .nav > .nav-toggler  {
+        font-size: 25px;
+        height: 30px;
+        line-height: 30px;
+    }
+
+    .header-area > .nav > .nav-menu {
+        top: 60px;
+    }
+
+    .header-area > .nav > .nav-menu > .nav-item {
+        height: 50px;
+        line-height: 50px;
+    }
+
+    .header-area > .nav > .nav-menu > .nav-item > .nav-link {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 400px) { 
+    .header-area > .nav > .nav-logo {
+        font-size: 25px;
+    }
+
+    .header-area > .nav > .nav-toggler  {
+        font-size: 25px;
+        height: 30px;
+        line-height: 30px;
+    }
+
+    .header-area > .nav > .nav-menu {
+        top: 60px;
+    }
+
+    .header-area > .nav > .nav-menu > .nav-item {
+        height: 55px;
+        line-height: 60px;
+    }
+}
