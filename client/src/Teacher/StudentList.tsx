@@ -3,6 +3,10 @@ import { ComponentProps, Student } from "../Tools/data.model";
 
 import { sendJSONData } from "../Tools/Toolkit";
 
+import { BsFillTrashFill } from "react-icons/bs";
+
+import "./StudentList.scss";
+
 const SEND_SCRIPT: string = "http://localhost:8080/deleteStudent";
 const SEND_SCRIPT_DELETE_ALL: string = "http://localhost:8080/deleteAllStudents";
 
@@ -63,13 +67,30 @@ const StudentList = ({ setToken, studentInfo }: ComponentProps) => {
     }, [studentInfo]);
 
     return (
-        <div>
-            <br/><br/><br/><br/><br/><br/><br/>
-            <div>Student List <button onClick={deleteAllButton} disabled={students?.length === 0}>Delete All</button></div>
+        <div className="studentList-wrapper">
+            <div className="studentList-header">
+                <div className="studentList-title">
+                    Student List<br />
+                    <button onClick={deleteAllButton} disabled={students?.length === 0}>
+                        Delete All
+                    </button>
+                </div>
+                <div style={{ display: deleteAllPopup === true ? "block" : "none"}}>
+                    <div>Are you sure you want to delete all of the students?</div>
+                    <button onClick={confirmAllButton}>Confirm</button>
+                    <button onClick={cancelButton}>Cancel</button> 
+                </div>
+            </div>
             {students?.map(student => 
-                <div>
-                    {student.firstName} {student.lastName} 
-                    <button id={student._id} onClick={deleteOneButton}>Delete</button>
+                <div className="studentList-info">
+                    <div className="studentList-card">
+                        <span className="studentList-name">
+                            {student.firstName} {student.lastName} 
+                        </span> 
+                        <button className="btnTrash" id={student._id} onClick={deleteOneButton}>
+                            <BsFillTrashFill />
+                        </button>
+                    </div>
                     <div style={{ display: deleteOnePopup === student._id ? "block" : "none"}}>
                         <div>Are you sure you want to delete {student.firstName} {student.lastName}?</div>
                         <button name={student.email} onClick={confirmOneButton}>Confirm</button>
@@ -78,11 +99,6 @@ const StudentList = ({ setToken, studentInfo }: ComponentProps) => {
                 </div>  
                   
             )}
-            <div style={{ display: deleteAllPopup === true ? "block" : "none"}}>
-                <div>Are you sure you want to delete all of the students?</div>
-                <button onClick={confirmAllButton}>Confirm</button>
-                <button onClick={cancelButton}>Cancel</button> 
-            </div>
         </div>
     );
 }

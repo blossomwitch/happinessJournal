@@ -4,6 +4,10 @@ import { ComponentProps, Student } from "../Tools/data.model";
 import { BsCaretDownFill } from 'react-icons/bs'
 import { BsCaretUpFill } from 'react-icons/bs'
 
+import { GrOverview } from "react-icons/gr";
+
+import "./Overview.scss";
+
 const Overview = ({ studentInfo }: ComponentProps) => {
 
     const [students, setStudents] = React.useState<Student[] | undefined>([]);
@@ -36,12 +40,11 @@ const Overview = ({ studentInfo }: ComponentProps) => {
     }, [studentInfo, students]);
 
     return (
-        <div>
-            <br/><br/><br/><br/><br/><br/>
-            <div>End of Week Reflections</div>
+        <div className="overview-teacher-wrapper">
+            <div className="overview-teacher-title">End of Week Reflections</div>
             {weekList?.map(week => 
-                <div>
-                    <div id={week} onClick={arrowClick}>
+                <div className="overview-teacher-content">
+                    <div className="overview-teacher-click" id={week} onClick={arrowClick}>
                         {week}
                         {showMe === week
                         ?
@@ -50,11 +53,19 @@ const Overview = ({ studentInfo }: ComponentProps) => {
                         <BsCaretDownFill/>
                         }
                     </div>
-                    <div style={{ display: showMe === week ? "block" : "none"}}>
+                    <div className="overview-teacher-info" style={{ display: showMe === week ? "block" : "none"}}>
                         {students?.map(student =>
                             {if(student.reflections.find(reflection => reflection.date === week) !== undefined) {
                                 return (
-                                <div>{student.firstName} {student.lastName}: {student.reflections.find(reflection => reflection.date === week)?.final}</div>
+                                <div className="overview-teacher-card">
+                                    <div className="overview-teacher-subtitle">
+                                        <GrOverview className="icon" /> {student.firstName} {student.lastName}:
+                                        <hr />
+                                    </div>
+                                    <div className="overview-teacher-item">
+                                        {student.reflections.find(reflection => reflection.date === week)?.final}
+                                    </div>
+                                </div>
                                 );
                             }}
                         )}
