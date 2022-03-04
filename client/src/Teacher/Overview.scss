@@ -1,0 +1,319 @@
+.overview-teacher-wrapper {
+    padding: 7% 15% 5% 15%;
+}
+
+.overview-teacher-title {
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: 'Carter One', cursive;
+    padding-bottom: 3%;
+}
+
+.overview-teacher-content {
+    padding: 0% 7% 2% 7%;
+}
+
+.overview-teacher-click {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 35px;
+    border: none;
+    border-bottom: 2.5px solid rgb(155, 163, 197);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 12.5px;
+    background-color: rgb(205, 210, 230);
+}
+
+.overview-teacher-click:hover {
+    background-color: rgb(150, 160, 202);
+    transition: .35s ease all;
+}
+
+.overview-teacher-info {
+    margin-bottom: 30px;
+    padding: 35px;
+    border: none;
+    border-bottom: 2.5px solid rgb(155, 163, 197);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 12.5px;
+    background-color: #A8C8F9;
+}
+
+.overview-teacher-card {
+    margin-bottom: 15px;
+    padding: 35px;
+    border: none;
+    border-bottom: 2.5px solid rgb(155, 163, 197);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 12.5px;
+    background-color: #f1e5cf;
+}
+
+.overview-teacher-subtitle {
+    font-size: 25px;
+    font-family: 'Fjalla One', sans-serif;
+}
+
+.overview-teacher-item {
+    font-size: 20px;
+    font-family: 'Archivo', sans-serif;
+}
+
+// --------------------------------------- media query
+@media (max-width: 1500px) {
+    .overview-teacher-wrapper {
+        padding: 10% 15% 5% 15%;
+    }
+
+    .overview-teacher-title {
+        font-size: 35px;
+        padding-bottom: 3%;
+    }
+
+    .overview-teacher-content {
+        padding: 0% 10% 2% 10%;
+    }
+
+    .overview-teacher-click {
+        font-size: 25px;
+        padding: 25px;
+    }
+
+    .overview-teacher-subtitle {
+        font-size: 20px;
+    }
+    
+    .overview-teacher-item {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .overview-teacher-wrapper {
+        padding: 10% 15% 5% 15%;
+    }
+
+    .overview-teacher-title {
+        font-size: 30px;
+        padding-bottom: 2%;
+    }
+
+    .overview-teacher-content {
+        padding: 0% 10% 2% 10%;
+    }
+
+    .overview-teacher-click {
+        font-size: 22px;
+        padding: 20px;
+    }
+
+    .overview-teacher-info {
+        margin-bottom: 20px;
+        padding: 30px;
+    }
+
+    .overview-teacher-card {
+        padding: 25px;
+    }
+
+    .overview-teacher-subtitle {
+        font-size: 18px;
+    }
+    
+    .overview-teacher-item {
+        font-size: 16px;
+    }  
+}
+
+@media (max-width: 900px) { 
+    .overview-teacher-wrapper {
+        padding: 12% 12% 5% 12%;
+    }
+
+    .overview-teacher-title {
+        font-size: 25px;
+        padding-bottom: 2%;
+    }
+
+    .overview-teacher-content {
+        padding: 0% 10% 2% 10%;
+    }
+
+    .overview-teacher-info {
+        margin-bottom: 20px;
+        padding: 25px;
+    }
+
+    .overview-teacher-card {
+        padding: 18px;
+    }
+
+    .overview-teacher-click {
+        font-size: 18px;
+        padding: 18px;
+    }
+
+    .overview-teacher-subtitle {
+        font-size: 16px;
+    }
+    
+    .overview-teacher-item {
+        font-size: 14px;
+        font-family: 'Archivo', sans-serif;
+    }
+}
+
+@media (max-width: 700px) { 
+    .overview-teacher-wrapper {
+        padding: 13% 10% 5% 10%;
+    }
+
+    .overview-teacher-title {
+        font-size: 25px;
+        padding-bottom: 3%;
+    }
+
+    .overview-teacher-content {
+        padding: 0% 10% 2% 10%;
+    }
+
+    .overview-teacher-info {
+        margin-bottom: 15px;
+        padding: 25px;
+    }
+
+    .overview-teacher-card {
+        padding: 16px;
+    }
+
+    .overview-teacher-click {
+        font-size: 16px;
+        padding: 16px;
+    }
+
+    .overview-teacher-subtitle {
+        font-size: 15px;
+    }
+    
+    .overview-teacher-item {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 600px) { 
+    .overview-teacher-wrapper {
+        padding: 15% 5% 5% 5%;
+    }
+
+    .overview-teacher-title {
+        font-size: 23px;
+        padding-bottom: 5%;
+    }
+
+    .overview-teacher-content {
+        padding: 0% 8% 2% 8%;
+    }
+
+    .overview-teacher-info {
+        padding: 25px;
+    }
+
+    .overview-teacher-card {
+        padding: 16px;
+    }
+
+    .overview-teacher-click {
+        font-size: 14px;
+        padding: 14px;
+    }
+
+    .overview-teacher-subtitle {
+        font-size: 13px;
+    }
+    
+    .overview-teacher-item {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 500px) { 
+    .overview-teacher-wrapper {
+        padding: 20% 5% 5% 5%;
+    }
+
+    .overview-teacher-title {
+        font-size: 20px;
+        padding-bottom: 5%;
+    }
+
+    .overview-teacher-content {
+        padding: 0% 7% 2% 7%;
+    }
+
+    .overview-teacher-info {
+        padding: 16px;
+    }
+
+    .overview-teacher-card {
+        padding: 16px;
+    }
+
+    .overview-teacher-click {
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    .overview-teacher-subtitle {
+        font-size: 12px;
+    }
+    
+    .overview-teacher-item {
+        font-size: 10px;
+    }
+
+    .icon {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 400px) { 
+    .overview-teacher-wrapper {
+        padding: 20% 5% 5% 5%;
+    }
+
+    .overview-teacher-title {
+        font-size: 18px;
+        padding-bottom: 5%;
+    }
+
+    .overview-teacher-content {
+        padding: 0% 5% 2% 5%;
+    }
+
+    .overview-teacher-info {
+        padding: 15px;
+    }
+
+    .overview-teacher-card {
+        padding: 15px;
+    }
+
+    .overview-teacher-click {
+        font-size: 11px;
+        padding: 9px;
+    }
+
+    .overview-teacher-subtitle {
+        font-size: 11px;
+    }
+    
+    .overview-teacher-item {
+        font-size: 9px;
+    }
+
+    .icon {
+        font-size: 13px;
+    }
+}

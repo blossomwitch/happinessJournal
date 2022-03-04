@@ -1,0 +1,46 @@
+.studentList-wrapper {
+    padding: 7% 15% 5% 15%;
+}
+
+.studentList-header {
+    text-align: center;
+}
+
+.studentList-title {
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: 'Carter One', cursive;
+    padding-bottom: 3%;
+}
+
+.studentList-info {
+    margin-bottom: 30px;
+    padding: 35px;
+    border: none;
+    border-bottom: 2.5px solid rgb(155, 163, 197);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 12.5px;
+    background-color: #A8C8F9;
+}
+
+.studentList-name {
+    font-size: 30px;
+}
+
+.btnTrash {
+    float: right;
+    background-color: #131250;
+    padding-top: 1%;
+    border:none;
+    color:white;
+    border-radius: 5px;
+    font-size: 20pt;
+    cursor: pointer;
+}
+
+.btnTrash:hover {
+    background-color: white;
+    transition: all ease 0.6s;
+    color:#131250
+}
