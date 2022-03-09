@@ -48,9 +48,9 @@ const Overview = ({ studentInfo }: ComponentProps) => {
                         {week}
                         {showMe === week
                         ?
-                        <BsCaretUpFill/>
+                        <BsCaretUpFill style={{pointerEvents: 'none'}}/>
                         :
-                        <BsCaretDownFill/>
+                        <BsCaretDownFill style={{pointerEvents: 'none'}}/>
                         }
                     </div>
                     <div className="overview-teacher-info" style={{ display: showMe === week ? "block" : "none"}}>

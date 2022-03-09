@@ -5,11 +5,14 @@ import ReCAPTCHA from "react-google-recaptcha";
 import "./Create.scss";
 import img from "./logo.png";
 import { Link } from "react-router-dom";
+import LoadingOverlay from "../LoadingOverlay/LoadingOverlay";
 
 const SEND_SCRIPT: string = "http://localhost:8080/createAccount";
 const STUDENT_INFO = "http://localhost:8080/getStudentInfo";
 
-const Create = ({ setToken, studentInfo, setStudentInfo }: ComponentProps) => {
+const Create = ({ studentInfo, setStudentInfo }: ComponentProps) => {
+
+  const [loading, setLoading] = useState<boolean>(false);
   // ---------------------------------------------------------------------------------- Input Checking
   // First name, Last name, Email, Password, Password Check
   const [fName, setfName] = useState<string>("");
@@ -154,6 +157,7 @@ const Create = ({ setToken, studentInfo, setStudentInfo }: ComponentProps) => {
 
   // send account data to the server and redirect to their reflections page
   const onSubmit = (e: any): void => {
+    setLoading(true);
     e.preventDefault();
     let sendJSON = {
       firstName: fName,
@@ -173,6 +177,7 @@ const Create = ({ setToken, studentInfo, setStudentInfo }: ComponentProps) => {
 
   // if account data sends successfully
   const onSuccess = (e: any): void => {
+    setLoading(false);
     setConfirmationVisible(true);
   };
 
@@ -201,6 +206,7 @@ const Create = ({ setToken, studentInfo, setStudentInfo }: ComponentProps) => {
 
   return (
     <div className="create-wrapper">
+      <LoadingOverlay enabled={loading} bgColor="#ffffff" spinnerColor="#131250" />
       <div className="create-logo">
         <img src={img} alt="happiness journal logo" />
       </div>
@@ -320,7 +326,7 @@ const Create = ({ setToken, studentInfo, setStudentInfo }: ComponentProps) => {
               Create Account
             </button>
             <Link to="/">
-              <button className="btnBack" onClick={backButton}>Back</button>
+              <button className="btnBack">Back</button>
             </Link>
           </div>
         </div>
