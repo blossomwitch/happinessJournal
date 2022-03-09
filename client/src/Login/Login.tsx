@@ -4,16 +4,19 @@ import img from './logo.png';
 import { ComponentProps, Token } from "../Tools/data.model";
 import { sendJSONData } from "../Tools/Toolkit";
 import { Link } from "react-router-dom";
+import LoadingOverlay from "../LoadingOverlay/LoadingOverlay";
 
 const SEND_SCRIPT: string = "http://localhost:8080/login";
 
-const Login = ({setToken, setStudentEmail}:ComponentProps) => {
+const Login = ({setToken}:ComponentProps) => {
+  const [loading, setLoading] = useState<boolean>(false);
   const [email, setEmail] = useState<string>();
   const [password, setPassword] = useState<string>();
   const [errorMsg, setErrorMsg] = useState<string>();
 
   // send email and password to the server to authenticate
   const onSubmit = (e: any): void => {
+    setLoading(true);
     e.preventDefault();
     let sendJSON = {
       email: email,
@@ -24,6 +27,7 @@ const Login = ({setToken, setStudentEmail}:ComponentProps) => {
   };
 
   const onSuccess = (e: any): void => {
+    setLoading(false);
     setErrorMsg(undefined);
     sessionStorage.setItem("email", JSON.stringify(email));
     if (email === "admin") {
@@ -46,6 +50,7 @@ const Login = ({setToken, setStudentEmail}:ComponentProps) => {
 
   return (
     <div className="login-wrapper">
+      <LoadingOverlay enabled={loading} bgColor="#ffffff" spinnerColor="#131250" />
       <div className="login-logo">
         {/* Logo will add */}
         <img src={img} alt="happiness journal logo"/>

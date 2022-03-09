@@ -55,9 +55,9 @@ const ReflectionOverview = ({ studentInfo }: ComponentProps) => {
                             {reflection.date}
                             {showMe === reflection.date
                             ?
-                            <BsCaretUpFill/>
+                            <BsCaretUpFill style={{pointerEvents: 'none'}}/>
                             :
-                            <BsCaretDownFill/>
+                            <BsCaretDownFill style={{pointerEvents: 'none'}}/>
                             }
                         </div>
                         <div className="overview-info" style={{ display: showMe === reflection.date ? "block" : "none"}}>

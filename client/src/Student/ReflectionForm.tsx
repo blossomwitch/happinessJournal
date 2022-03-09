@@ -10,16 +10,18 @@ import { FaSmileWink } from "react-icons/fa";
 import { FaHandsHelping } from "react-icons/fa";
 import { GoBook } from "react-icons/go";
 import { sendJSONData } from "../Tools/Toolkit";
-import React from "react";
+import React, { useState } from "react";
 
 // img import 
 import img from "./check.png";
+import LoadingOverlay from "../LoadingOverlay/LoadingOverlay";
 
 
 const SAVE_REFLECTION: string = "http://localhost:8080/saveReflection";
 const SUBMIT_REFLECTION: string = "http://localhost:8080/submitReflection";
 
 const ReflectionForm = ({ studentInfo }: ComponentProps) => {
+  const [loading, setLoading] = useState<boolean>(false);
   // start and end week dates - week starts on Monday
   const start: Date = startOfWeek(new Date(), { weekStartsOn: 1 });
   const end: Date = endOfWeek(new Date(), { weekStartsOn: 1 });
@@ -36,23 +38,23 @@ const ReflectionForm = ({ studentInfo }: ComponentProps) => {
     storedEmail !== null ? JSON.parse(storedEmail) : undefined;
 
   // set the student to the one with the matching email
-  const [student, setStudent] = React.useState<Student | undefined>();
+  const [student, setStudent] = useState<Student | undefined>();
 
   // different form fields to display save data if any
-  const [exerciseTime, setExerciseTime] = React.useState<string>("");
-  const [exerciseType, setExerciseType] = React.useState<string>("");
-  const [meditation, setMeditation] = React.useState<string>("");
-  const [kindness, setKindness] = React.useState<string>("");
-  const [gratitude, setGratitude] = React.useState<string>("");
-  const [journal, setJournal] = React.useState<string>("");
+  const [exerciseTime, setExerciseTime] = useState<string>("");
+  const [exerciseType, setExerciseType] = useState<string>("");
+  const [meditation, setMeditation] = useState<string>("");
+  const [kindness, setKindness] = useState<string>("");
+  const [gratitude, setGratitude] = useState<string>("");
+  const [journal, setJournal] = useState<string>("");
 
   // final message field
-  const [final, setFinal] = React.useState<string>("");
+  const [final, setFinal] = useState<string>("");
 
   // button message for save and submit
-  const [btnMessage, setBtnMessage] = React.useState<string>("");
+  const [btnMessage, setBtnMessage] = useState<string>("");
   // button group visibility - submit and confirm submit with final reflection
-  const [buttonsVisible, setButtonsVisible] = React.useState<boolean>(true);
+  const [buttonsVisible, setButtonsVisible] = useState<boolean>(true);
 
   // make sure the values are loaded on login and refreshes
   React.useEffect((): void => {
@@ -148,6 +150,7 @@ const ReflectionForm = ({ studentInfo }: ComponentProps) => {
   };
 
   const onConfirmSubmit = (e: any): void => {
+    setLoading(true);
     let JSONData = {
       _id: student?._id,
       submitData: {
@@ -172,6 +175,7 @@ const ReflectionForm = ({ studentInfo }: ComponentProps) => {
   };
 
   const submitSuccess = () => {
+    setLoading(false);
     setBtnMessage("Reflection submitted successfully.");
   };
 
@@ -196,6 +200,7 @@ const ReflectionForm = ({ studentInfo }: ComponentProps) => {
     </div>
     :
     <div className="student-wrapper">
+      <LoadingOverlay enabled={loading} bgColor="#ffffff" spinnerColor="#131250" />
       <form className="student-form">
         <div className="student-week">
           <p>{stringDate}</p>

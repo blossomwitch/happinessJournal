@@ -3,7 +3,6 @@ import { ComponentProps, Student } from "../Tools/data.model";
 
 import { sendJSONData } from "../Tools/Toolkit";
 
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { BsFillTrashFill } from "react-icons/bs";
 
 import "./StudentList.scss";
@@ -94,7 +93,7 @@ const StudentList = ({ setToken, studentInfo }: ComponentProps) => {
                             {student.firstName} {student.lastName} 
                         </span> 
                         <button className="btnTrash" id={student._id} onClick={deleteOneButton}>
-                            <BsFillTrashFill />
+                            <BsFillTrashFill style={{pointerEvents: 'none'}}/>
                         </button>
                     </div>
                     <div className="popup-delete" style={{ display: deleteOnePopup === student._id ? "block" : "none"}}>
