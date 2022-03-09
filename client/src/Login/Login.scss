@@ -78,7 +78,6 @@ button::after {
     height:35px;
     font-size: 14pt;
     margin-top:50px;
-    margin-right: 20px;
     cursor: pointer;
 }
 
@@ -122,19 +121,6 @@ button::after {
         width:30%;
         height:40px;
         font-size: 12pt;
-        margin-right: 15px;
-        cursor: pointer;
-    }
-
-    .btnLogin-teacher {
-        background-color: #131250;
-        border:none;
-        color:white;
-        border-radius: 5px;
-        width:50%;
-        height:40px;
-        font-size: 12pt;
-        margin-left: 15px;
         cursor: pointer;
     }
 
@@ -146,20 +132,6 @@ button::after {
         width:90%;
         height:40px;
         font-size: 12pt;
-        cursor: pointer;
-    }
-}
-
-@media (max-width: 992px) {
-    .btnLogin-teacher {
-        background-color: #131250;
-        border:none;
-        color:white;
-        border-radius: 5px;
-        width:50%;
-        height:40px;
-        font-size: 11pt;
-        margin-left: 15px;
         cursor: pointer;
     }
 }

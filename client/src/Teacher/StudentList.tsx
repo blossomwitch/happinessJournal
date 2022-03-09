@@ -3,6 +3,7 @@ import { ComponentProps, Student } from "../Tools/data.model";
 
 import { sendJSONData } from "../Tools/Toolkit";
 
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { BsFillTrashFill } from "react-icons/bs";
 
 import "./StudentList.scss";
@@ -24,6 +25,7 @@ const StudentList = ({ setToken, studentInfo }: ComponentProps) => {
 
     const deleteAllButton = (e:any):void => {
         setDeleteAllPopup(true);
+        
     }
 
     const cancelButton = (e:any):void => {
@@ -71,14 +73,18 @@ const StudentList = ({ setToken, studentInfo }: ComponentProps) => {
             <div className="studentList-header">
                 <div className="studentList-title">
                     Student List<br />
-                    <button onClick={deleteAllButton} disabled={students?.length === 0}>
+                    <button className="btnDeleteAll" onClick={deleteAllButton} disabled={students?.length === 0}>
                         Delete All
                     </button>
                 </div>
-                <div style={{ display: deleteAllPopup === true ? "block" : "none"}}>
-                    <div>Are you sure you want to delete all of the students?</div>
-                    <button onClick={confirmAllButton}>Confirm</button>
-                    <button onClick={cancelButton}>Cancel</button> 
+                <div className="popup-delete" style={{ display: deleteAllPopup === true ? "block" : "none"}}>
+                    <div className="popup-delete-box">
+                        <div className="popup-delete-message">
+                            Are you sure you want to delete all of the students?
+                        </div>
+                        <button className="popup-delete-btnConfirm" onClick={confirmAllButton}>Confirm</button>
+                        <button className="popup-delete-btnCancel" onClick={cancelButton}>Cancel</button> 
+                    </div>
                 </div>
             </div>
             {students?.map(student => 
@@ -91,10 +97,14 @@ const StudentList = ({ setToken, studentInfo }: ComponentProps) => {
                             <BsFillTrashFill />
                         </button>
                     </div>
-                    <div style={{ display: deleteOnePopup === student._id ? "block" : "none"}}>
-                        <div>Are you sure you want to delete {student.firstName} {student.lastName}?</div>
-                        <button name={student.email} onClick={confirmOneButton}>Confirm</button>
-                        <button onClick={cancelButton}>Cancel</button> 
+                    <div className="popup-delete" style={{ display: deleteOnePopup === student._id ? "block" : "none"}}>
+                        <div className="popup-delete-box">
+                            <div className="popup-delete-message">
+                                Are you sure you want to delete <strong>{student.firstName} {student.lastName}</strong>?
+                            </div>
+                            <button className="popup-delete-btnConfirm" name={student.email} onClick={confirmOneButton}>Confirm</button>
+                            <button className="popup-delete-btnCancel" onClick={cancelButton}>Cancel</button> 
+                        </div>
                     </div>
                 </div>  
                   

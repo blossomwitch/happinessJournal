@@ -11,3 +11,5 @@ COPY . .
 EXPOSE 3000
 # start up react server on container using npm scripts
 CMD ["npm","start"]
+
+ENV CHOKIDAR_USEPOLLING=true

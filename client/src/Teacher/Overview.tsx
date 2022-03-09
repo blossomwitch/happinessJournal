@@ -60,17 +60,17 @@ const Overview = ({ studentInfo }: ComponentProps) => {
                                 <div className="overview-teacher-card">
                                     <div className="overview-teacher-subtitle">
                                         <GrOverview className="icon" /> {student.firstName} {student.lastName}:
-                                        <hr />
                                     </div>
                                     <div className="overview-teacher-item">
                                         {student.reflections.find(reflection => reflection.date === week)?.final}
                                     </div>
+                                    <hr className="overview-teacher-hr"/>
                                 </div>
                                 );
                             }}
                         )}
+                        </div>
                     </div>
-                </div>
             ).reverse()}
         </div>
     );

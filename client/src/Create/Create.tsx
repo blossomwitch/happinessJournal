@@ -75,7 +75,7 @@ const Create = ({ setToken, studentInfo, setStudentInfo }: ComponentProps) => {
       // need to fix!!!!!!
       // need to make nscc email Regex
       const emailRegex =
-        /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+        /([wW][0-9][0-9][0-9][0-9][0-9][0-9][0-9])@([n][s][c][c])(.[c][a])/;
       const emailCurrent = e.target.value;
       setEmail(emailCurrent);
 
