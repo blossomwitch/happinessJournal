@@ -6,6 +6,23 @@
     text-align: center;
 }
 
+.btnDeleteAll {
+    background-color: #131250;
+    border:none;
+    color:white;
+    border-radius: 10px;
+    font-size: 20pt;
+    cursor: pointer;
+    padding: 0.5%;
+}
+
+.btnDeleteAll:hover {
+    border: 3px solid #131250;
+    background-color: white;
+    transition: all ease 0.6s;
+    color:#131250
+}
+
 .studentList-title {
     text-align: center;
     font-size: 40px;
@@ -16,7 +33,7 @@
 
 .studentList-info {
     margin-bottom: 30px;
-    padding: 35px;
+    padding: 30px;
     border: none;
     border-bottom: 2.5px solid rgb(155, 163, 197);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -26,6 +43,7 @@
 
 .studentList-name {
     font-size: 30px;
+    font-family: 'Fjalla One', sans-serif;
 }
 
 .btnTrash {
@@ -43,4 +61,298 @@
     background-color: white;
     transition: all ease 0.6s;
     color:#131250
+}
+
+@media (max-width: 1500px) {
+    .studentList-wrapper {
+        padding: 10% 15% 5% 15%;
+    }
+}
+
+@media (max-width: 900px) {
+    .studentList-wrapper {
+        padding: 12% 12% 5% 12%;
+    }
+
+    .btnDeleteAll {
+        font-size: 17pt;
+        padding: 1.5%;
+    }
+  
+    .studentList-info {
+        margin-bottom: 20px;
+        padding: 25px;
+    }
+    
+    .studentList-name {
+        font-size: 25px;
+    }
+    
+    .btnTrash {
+        font-size: 18pt;
+    }
+}
+
+@media (max-width: 700px) {
+    .studentList-wrapper {
+        padding: 13% 10% 5% 10%;
+    }
+
+    .btnDeleteAll {
+        font-size: 13pt;
+    }
+  
+    .studentList-info {
+        margin-bottom: 15px;
+        padding: 20px;
+    }
+    
+    .studentList-name {
+        font-size: 20px;
+    }
+    
+    .btnTrash {
+        font-size: 14pt;
+    }
+}
+
+@media (max-width: 600px) { 
+    .studentList-wrapper {
+        padding:  15% 5% 5% 5%;
+    }
+
+    .studentList-title {
+        font-size: 35px;
+    }
+
+    .btnDeleteAll {
+        font-size: 11pt;
+    }
+  
+    .studentList-info {
+        margin-bottom: 15px;
+        padding: 15px;
+    }
+    
+    .studentList-name {
+        font-size: 20px;
+    }
+    
+    .btnTrash {
+        font-size: 12pt;
+    }
+}
+
+@media (max-width: 400px) { 
+    .studentList-wrapper {
+        padding: 20% 5% 5% 5%;
+    }
+
+    .studentList-title {
+        font-size: 35px;
+    }
+
+    .btnDeleteAll {
+        font-size: 11pt;
+    }
+  
+    .studentList-info {
+        margin-bottom: 10px;
+        padding: 12px;
+    }
+    
+    .studentList-name {
+        font-size: 15px;
+    }
+    
+    .btnTrash {
+        font-size: 10pt;
+    }
+}
+
+// ----------------------------------------------------- popup
+.popup-delete{
+    position: fixed;
+    top:0; left: 0; bottom: 0; right: 0;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.popup-delete-box {
+    text-align: center;
+    width: 500px;
+    height: 200px;
+
+    border: none;
+    border-bottom: 2.5px solid rgb(155, 163, 197);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 12.5px;
+    background-color: #c9cbce;
+
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.popup-delete-message {
+    font-size: 20px;
+    padding-top: 15%;
+}
+
+.popup-delete-btnConfirm {
+    background-color: #131250;
+    border:none;
+    color:white;
+    border-radius: 5px;
+    width:30%;
+    height:35px;
+    font-size: 14pt;
+    margin-top:35px;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.popup-delete-btnCancel {
+    background-color: #131250;
+    border:none;
+    color:white;
+    border-radius: 5px;
+    width:30%;
+    height:35px;
+    font-size: 14pt;
+    margin-top:35px;
+    cursor: pointer;
+}
+
+.popup-delete-btnConfirm:hover, .popup-delete-btnCancel:hover {
+    border: 3px solid #131250;
+    background-color: white;
+    transition: all ease 0.6s;
+    color:#131250
+}
+
+@media (max-width: 1200px) {
+    .popup-delete-box {
+        width: 500px;
+        height: 200px;
+        transform: translate(-50%, -50%);
+    } 
+    
+    .popup-delete-message {
+        padding-top: 15%;
+    }
+    
+}
+
+@media (max-width: 900px) {
+    .popup-delete-box {
+        width: 400px;
+        height: 200px;
+        transform: translate(-50%, -50%);
+    } 
+
+    .popup-delete-message {
+        font-size: 18px;
+        padding-top: 15%;
+    }
+    
+    .popup-delete-btnConfirm {
+        height:30px;
+        font-size: 12pt;
+        margin-top:35px;
+        margin-right: 15px;
+        cursor: pointer;
+    }
+    
+    .popup-delete-btnCancel {
+        height:30px;
+        font-size: 12pt;
+        margin-top:35px;
+        margin-right: 15px;
+        cursor: pointer;
+    }
+}
+
+@media (max-width: 700px) {
+    .popup-delete-box {
+        width: 350px;
+        height: 150px;
+    } 
+
+    .popup-delete-message {
+        padding-top: 12%;
+        font-size: 14px;
+    }
+    
+    .popup-delete-btnConfirm {
+        height:30px;
+        font-size: 12pt;
+        margin-top:35px;
+        margin-right: 15px;
+        cursor: pointer;
+    }
+    
+    .popup-delete-btnCancel {
+        height:30px;
+        font-size: 12pt;
+        margin-top:35px;
+        margin-right: 15px;
+        cursor: pointer;
+    }
+}
+
+@media (max-width: 500px) {
+    .popup-delete-box {
+        width: 330px;
+        height: 150px;
+    } 
+
+    .popup-delete-message {
+        padding-top: 15%;
+        font-size: 12px;
+    }
+    
+    .popup-delete-btnConfirm {
+        height:30px;
+        font-size: 12pt;
+        margin-top:35px;
+        margin-right: 15px;
+        cursor: pointer;
+    }
+    
+    .popup-delete-btnCancel {
+        height:30px;
+        font-size: 12pt;
+        margin-top:35px;
+        margin-right: 15px;
+        cursor: pointer;
+    }
+}
+
+@media (max-width: 400px) {
+    .popup-delete-box {
+        width: 300px;
+        height: 150px;
+    } 
+
+    .popup-delete-message {
+        padding-top: 15%;
+        font-size: 12px;
+    }
+    
+    .popup-delete-btnConfirm {
+        height:25px;
+        font-size: 11pt;
+        margin-top:35px;
+        margin-right: 15px;
+        cursor: pointer;
+    }
+    
+    .popup-delete-btnCancel {
+        height:25px;
+        font-size: 11pt;
+        margin-top:35px;
+        margin-right: 15px;
+        cursor: pointer;
+    }
 }

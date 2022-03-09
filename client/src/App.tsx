@@ -15,6 +15,9 @@ import ReflectionOverview from "./Student/ReflectionOverview";
 import TeacherNavigation from "./Teacher/TeacherNavigation"; 
 import StudentList from "./Teacher/StudentList";
 
+import "./../node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
+import "./../node_modules/@fortawesome/fontawesome-free/scss/solid.scss";
+
 const STUDENT_INFO = "http://localhost:8080/getStudentInfo";
 
 function App() {
